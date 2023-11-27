@@ -86,7 +86,12 @@ dependencies {
     // Lifecycle utilities for Compose
     implementation(libs.androidx.lifecycle.runtime.compose)
 
-    //image loader
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.gson)
+
+    // Image loader
     implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
