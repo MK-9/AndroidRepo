@@ -2,16 +2,17 @@
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
     namespace = "ir.divar.androidtask"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "ir.divar.androidtask"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -30,36 +31,69 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
+
     buildFeatures {
         compose = true
     }
+
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
+
     packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+//        resources {
+//            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+//        }
     }
 }
 
 dependencies {
-
     implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
+
     implementation(platform(libs.compose.bom))
+    implementation(libs.activity.compose)
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.navigation.compose)
+    implementation(libs.androidx.foundation)
+
+    // viewModel
+    implementation(libs.androidx.lifecycle.viewmodel)
+
+    // viewModel-ktx
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // ViewModel utilities for Compose
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    // Saved state module for ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
+
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Lifecycle utilities for Compose
+    implementation(libs.androidx.lifecycle.runtime.compose)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.gson)
+
+    // Image loader
+    implementation(libs.coil.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
