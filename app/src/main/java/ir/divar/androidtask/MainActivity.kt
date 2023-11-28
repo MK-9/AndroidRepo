@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import ir.divar.androidtask.data.model.Result
-import ir.divar.androidtask.data.model.request.FindPlaceRequest
+import ir.divar.androidtask.data.model.request.PostListRequest
 import ir.divar.androidtask.data.repository.PlaceRepository
 import ir.divar.androidtask.data.repository.PostRepository
 import ir.divar.androidtask.ui.theme.AndroidTaskTheme
@@ -55,12 +55,16 @@ class MainActivity : ComponentActivity() {
         lifecycleScope.launchWhenCreated {
             CoroutineScope(Dispatchers.Main).launch {
 //                val result = placeRepository.getPlaceList(ACCESS_TOKEN)
-                val result = placeRepository.findPlace(
+//                val result = placeRepository.findPlace(
+//                    ACCESS_TOKEN,
+//                    FindPlaceRequest(
+//                        lat = 35.717358,
+//                        long = 51.375076
+//                    )
+//                )
+                val result = postRepository.getPostList(
                     ACCESS_TOKEN,
-                    FindPlaceRequest(
-                        lat = 35.717358,
-                        long = 51.375076
-                    )
+                    1, PostListRequest(0, 0)
                 )
                 when (result) {
                     is Result.InProgress -> {
@@ -70,8 +74,13 @@ class MainActivity : ComponentActivity() {
                     is Result.OnSuccess -> {
                         Log.d("Result", "OnSuccess")
 
-                        val city = result.data
-                        Log.d("Result", "city: name " + "${city.name}")
+                        val postListDto = result.data
+//                        Log.d("Result", "widgets: name " + "${postListDto.widgets?.size}")
+
+                        postListDto.widgets?.forEach {
+                            Log.d("Result", "widget: title " + "${it.data?.title}")
+                        }
+
 //                        val dtp = result.data
 //                        Log.d("Result", "city: size " + "${dtp.cities?.size}")
 //
