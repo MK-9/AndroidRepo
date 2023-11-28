@@ -15,4 +15,8 @@ data class DataDto(
     @SerializedName("show_thumbnail") val showThumbnail: Boolean?,
     @SerializedName("thumbnail") val thumbnail: String?,
     @SerializedName("items") val items: List<ItemDto>?,
-)
+) {
+    override fun toString(): String {
+        return "DataDto(title=$title, subtitle=$subtitle, text=$text, value=$value, token=$token, price=$price, city=$city, district=$district, imageUrl=$imageUrl, showThumbnail=$showThumbnail, thumbnail=$thumbnail, items=$items)"
+    }
+}
