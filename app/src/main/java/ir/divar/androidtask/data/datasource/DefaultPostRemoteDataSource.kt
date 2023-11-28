@@ -4,19 +4,25 @@ import ir.divar.androidtask.data.model.Result
 import ir.divar.androidtask.data.model.request.PostListRequest
 import ir.divar.androidtask.data.model.response.PostListDto
 import ir.divar.androidtask.data.model.response.PostViewDto
+import ir.divar.androidtask.data.repository.DispatcherProvider
 import ir.divar.androidtask.data.service.PostService
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class DefaultPostRemoteDataSource @Inject constructor(val service: PostService) :
-    PostRemoteDataSource {
+class DefaultPostRemoteDataSource @Inject constructor(
+    val dispatcher: DispatcherProvider,
+    val service: PostService
+) : PostRemoteDataSource {
 
     override suspend fun getPostList(
         accessToken: String?,
         selectedCityId: Int,
         body: PostListRequest
     ): Result<PostListDto> {
-        return safeApiCall {
-            service.getPostList(accessToken, selectedCityId, body)
+        return withContext(dispatcher.io()) {
+            safeApiCall {
+                service.getPostList(accessToken, selectedCityId, body)
+            }
         }
     }
 
@@ -24,8 +30,11 @@ class DefaultPostRemoteDataSource @Inject constructor(val service: PostService) 
         accessToken: String?,
         postToken: String?
     ): Result<PostViewDto> {
-        return safeApiCall {
-            service.getPostView(accessToken, postToken)
+        return withContext(dispatcher.io()) {
+            safeApiCall {
+                service.getPostView(accessToken, postToken)
+            }
         }
     }
+
 }
