@@ -8,6 +8,8 @@ import ir.divar.androidtask.data.datasource.DefaultPlaceRemoteDataSource
 import ir.divar.androidtask.data.datasource.DefaultPostRemoteDataSource
 import ir.divar.androidtask.data.datasource.PlaceRemoteDataSource
 import ir.divar.androidtask.data.datasource.PostRemoteDataSource
+import ir.divar.androidtask.data.repository.DefaultDispatcherProvider
+import ir.divar.androidtask.data.repository.DispatcherProvider
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -18,4 +20,6 @@ interface DataSourceModule {
     @Binds
     fun bindListRemoteDataSource(remoteDataSource: DefaultPlaceRemoteDataSource): PlaceRemoteDataSource
 
+    @Binds
+    fun provideDispatchersProvider(provider: DefaultDispatcherProvider): DispatcherProvider
 }
