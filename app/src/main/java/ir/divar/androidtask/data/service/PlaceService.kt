@@ -13,12 +13,12 @@ import retrofit2.http.POST
 interface PlaceService {
 
     @Headers("Content-Type:application/json")
-    @GET("list")
+    @GET("place/list")
     suspend fun getPlaceList(
         @Header("x-access-token") accessToken: String?
     ): Response<PlaceListDto>
 
-    @POST("find")
+    @POST("place/find")
     suspend fun findPlace(
         @Header("x-access-token") accessToken: String?, @Body body: FindPlaceRequest
     ): Response<CityDto>
