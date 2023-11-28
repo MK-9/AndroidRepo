@@ -10,8 +10,8 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class DefaultPlaceRemoteDataSource @Inject constructor(
-    val dispatcher: DispatcherProvider,
-    val service: PlaceService
+    private val dispatcher: DispatcherProvider,
+    private val service: PlaceService
 ) : PlaceRemoteDataSource {
 
     override suspend fun getPlaceList(accessToken: String?): Result<PlaceListDto> {

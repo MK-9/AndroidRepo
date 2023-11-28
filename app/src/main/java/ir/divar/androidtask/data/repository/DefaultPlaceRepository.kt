@@ -7,7 +7,7 @@ import ir.divar.androidtask.data.model.request.FindPlaceRequest
 import ir.divar.androidtask.data.model.response.PlaceListDto
 import javax.inject.Inject
 
-class DefaultPlaceRepository @Inject constructor(val remoteDataSource: PlaceRemoteDataSource) :
+class DefaultPlaceRepository @Inject constructor(private val remoteDataSource: PlaceRemoteDataSource) :
     PlaceRepository {
 
     override suspend fun getPlaceList(accessToken: String?): Result<PlaceListDto> {

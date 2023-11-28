@@ -7,7 +7,7 @@ import ir.divar.androidtask.data.model.response.PostListDto
 import ir.divar.androidtask.data.model.response.PostViewDto
 import javax.inject.Inject
 
-class DefaultPostRepository @Inject constructor(val remoteDataSource: PostRemoteDataSource) :
+class DefaultPostRepository @Inject constructor(private val remoteDataSource: PostRemoteDataSource) :
     PostRepository {
 
     override suspend fun getPostList(

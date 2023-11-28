@@ -10,8 +10,8 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class DefaultPostRemoteDataSource @Inject constructor(
-    val dispatcher: DispatcherProvider,
-    val service: PostService
+    private val dispatcher: DispatcherProvider,
+    private val service: PostService
 ) : PostRemoteDataSource {
 
     override suspend fun getPostList(
