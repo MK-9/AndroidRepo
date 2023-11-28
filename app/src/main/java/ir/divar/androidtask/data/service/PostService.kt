@@ -14,14 +14,14 @@ import retrofit2.http.Query
 interface PostService {
 
     @POST("post/list")
-    fun getPostList(
+    suspend fun getPostList(
         @Header("x-access-token") accessToken: String?,
         @Query("city") selectedCityId: Int,
         @Body body: PostListRequest
     ): Response<PostListDto>
 
     @GET("post/view/{postToken}")
-    fun getPostView(
+    suspend fun getPostView(
         @Header("x-access-token") accessToken: String?, @Path("postToken") postToken: String?
     ): Response<PostViewDto>
 }
