@@ -97,6 +97,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.gson)
+
+    // Add logging in api
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
 
