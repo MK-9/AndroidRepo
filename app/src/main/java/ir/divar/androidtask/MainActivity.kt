@@ -62,10 +62,11 @@ class MainActivity : ComponentActivity() {
 //                        long = 51.375076
 //                    )
 //                )
-                val result = postRepository.getPostList(
-                    ACCESS_TOKEN,
-                    1, PostListRequest(0, 0)
-                )
+//                val result = postRepository.getPostList(
+//                    ACCESS_TOKEN,
+//                    1, PostListRequest(0, 0)
+//                )
+                val result = postRepository.getPostView(ACCESS_TOKEN, "QZkhSG5F")
                 when (result) {
                     is Result.InProgress -> {
                         Log.d("Result", "Progress")
@@ -77,8 +78,8 @@ class MainActivity : ComponentActivity() {
                         val postListDto = result.data
 //                        Log.d("Result", "widgets: name " + "${postListDto.widgets?.size}")
 
-                        postListDto.widgets?.forEach {
-                            Log.d("Result", "widget: title " + "${it.data?.title}")
+                        postListDto.widgets.forEach {
+                            Log.d("Result", "widget: title " + "${it.data?.toString()}")
                         }
 
 //                        val dtp = result.data
