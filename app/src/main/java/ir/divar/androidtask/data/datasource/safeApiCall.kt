@@ -5,7 +5,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
 
-suspend fun <T : Any> safeApiCall(input: suspend () -> Response<T>): Result<T> {
+internal suspend fun <T : Any> safeApiCall(input: suspend () -> Response<T>): Result<T> {
     try {
         val response = input.invoke()
 
