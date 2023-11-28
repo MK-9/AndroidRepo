@@ -2,7 +2,9 @@
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -69,27 +71,36 @@ dependencies {
     implementation(libs.androidx.foundation)
 
     // viewModel
-    implementation(libs.androidx.lifecycle.viewmodel)
+//    implementation(libs.androidx.lifecycle.viewmodel)
 
     // viewModel-ktx
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+//    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     // ViewModel utilities for Compose
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
+//    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // Saved state module for ViewModel
-    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
+//    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
 
     // Lifecycles only (without ViewModel or LiveData)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+//    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // Lifecycle utilities for Compose
-    implementation(libs.androidx.lifecycle.runtime.compose)
+//    implementation(libs.androidx.lifecycle.runtime.compose)
+
+    // kotlin coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core.jvm)
 
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.gson)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     // Image loader
     implementation(libs.coil.compose)
