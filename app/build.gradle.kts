@@ -88,14 +88,19 @@ dependencies {
     // Lifecycle utilities for Compose
 //    implementation(libs.androidx.lifecycle.runtime.compose)
 
+    // kotlin coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core.jvm)
+
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.gson)
 
     // Hilt
-    implementation (libs.hilt.android)
-    kapt (libs.hilt.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     // Image loader
     implementation(libs.coil.compose)
