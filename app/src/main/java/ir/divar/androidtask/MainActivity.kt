@@ -17,6 +17,7 @@ import ir.divar.androidtask.data.model.Result
 import ir.divar.androidtask.data.model.request.PostListRequest
 import ir.divar.androidtask.data.repository.PlaceRepository
 import ir.divar.androidtask.data.repository.PostRepository
+import ir.divar.androidtask.ui.screen.MainLayout
 import ir.divar.androidtask.ui.theme.AndroidTaskTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,23 +33,11 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var placeRepository: PlaceRepository
 
-
-    companion object {
-        const val ACCESS_TOKEN =
-            "Basic YXBpa2V5OjY5Y1dxVW8wNGhpNFdMdUdBT2IzMmRXZXQjsllsVzBtSkNiwU9yLUxEamNDUXFMSzJnR29mS3plZg=="
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AndroidTaskTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+                MainLayout()
             }
         }
 
@@ -97,6 +86,11 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    companion object {
+        const val ACCESS_TOKEN =
+            "Basic YXBpa2V5OjY5Y1dxVW8wNGhpNFdMdUdBT2IzMmRXZXQjsllsVzBtSkNiwU9yLUxEamNDUXFMSzJnR29mS3plZg=="
+    }
 }
 
 @Composable
@@ -114,3 +108,4 @@ fun GreetingPreview() {
         Greeting("Android")
     }
 }
+
