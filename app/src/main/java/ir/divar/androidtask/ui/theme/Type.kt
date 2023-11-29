@@ -2,7 +2,6 @@ package ir.divar.androidtask.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.sp
@@ -34,42 +33,47 @@ val Typography = Typography(
         textDirection = TextDirection.Rtl
     ),
     bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.0.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
+        textDirection = TextDirection.Rtl
     ),
     bodyMedium = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 20.0.sp,
-        letterSpacing = 0.2.sp
+        letterSpacing = 0.2.sp,
+        textDirection = TextDirection.Rtl
     ),
     bodySmall = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 16.0.sp,
-        letterSpacing = 0.4.sp
+        letterSpacing = 0.4.sp,
+        textDirection = TextDirection.Rtl
     ),
     labelLarge = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 20.0.sp,
-        letterSpacing = 0.1.sp
+        letterSpacing = 0.1.sp,
+        textDirection = TextDirection.Rtl
     ),
     labelMedium = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 16.0.sp,
-        letterSpacing = 0.4.sp
+        letterSpacing = 0.4.sp,
+        textDirection = TextDirection.Rtl
     ),
     labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 11.sp,
         lineHeight = 16.0.sp,
