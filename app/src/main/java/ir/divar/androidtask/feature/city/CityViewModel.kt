@@ -22,7 +22,7 @@ data class CityScreenUiState(
 
 @Immutable
 data class CityItem(
-    val title: String?, val onCityClicked: (() -> Unit)?
+    val title: String?, val onItemClicked: (() -> Unit)?
 )
 
 @HiltViewModel

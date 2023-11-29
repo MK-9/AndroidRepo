@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class WidgetDto(
     @SerializedName("widget_type") val widgetType: String?,
-    @SerializedName("data") val data: DataDto?
+    @SerializedName("data") val data: WidgetDataDto?
 )

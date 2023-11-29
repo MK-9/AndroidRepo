@@ -2,7 +2,7 @@ package ir.divar.androidtask.data.model.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class DataDto(
+data class WidgetDataDto(
     @SerializedName("title") val title: String?,
     @SerializedName("subtitle") val subtitle: String?,
     @SerializedName("text") val text: String?,
@@ -14,7 +14,7 @@ data class DataDto(
     @SerializedName("image_url") val imageUrl: String?,
     @SerializedName("show_thumbnail") val showThumbnail: Boolean?,
     @SerializedName("thumbnail") val thumbnail: String?,
-    @SerializedName("items") val items: List<ItemDto>?,
+    @SerializedName("items") val items: List<ImageItemDto>?,
 ) {
     override fun toString(): String {
         return "DataDto(title=$title, subtitle=$subtitle, text=$text, value=$value, token=$token, price=$price, city=$city, district=$district, imageUrl=$imageUrl, showThumbnail=$showThumbnail, thumbnail=$thumbnail, items=$items)"

@@ -1,6 +1,5 @@
 package ir.divar.androidtask.feature.city
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -8,8 +7,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -51,7 +54,7 @@ private fun CityScreenContent(data: List<CityItem>, onNavigateToPostScreen: (Cit
 
         items(items = data) { city ->
             city.title?.run {
-                CityScreenItem(city.title) {
+                CityScreenItem(this) {
                     onNavigateToPostScreen.invoke(city)
                 }
             }
@@ -84,28 +87,23 @@ private fun ProgressContent() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CityScreenItem(title: String, onItemClicked: () -> Unit) {
-    Row(
-        horizontalArrangement = Arrangement.End,
+    ElevatedCard(
+        onClick = { onItemClicked.invoke() },
         modifier = Modifier
             .fillMaxWidth()
-        
+            .padding(horizontal = 8.dp, vertical = 4.dp),
+        shape = RoundedCornerShape(corner = CornerSize(8.dp)),
+        colors = CardDefaults.elevatedCardColors()
     ) {
-        Card(
+        Text(
+            text = title,
             modifier = Modifier
-                .padding(8.dp)
-                .clickable {
-                    onItemClicked.invoke()
-                }
-        ) {
-            Text(
-                text = title,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
-                style = MaterialTheme.typography.titleMedium
-            )
-        }
+                .padding(16.dp)
+                .fillMaxWidth(),
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
 }

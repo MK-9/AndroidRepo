@@ -2,7 +2,7 @@ package ir.divar.androidtask.data.datasource
 
 import ir.divar.androidtask.data.model.Result
 import ir.divar.androidtask.data.model.request.PostListRequest
-import ir.divar.androidtask.data.model.response.PostListDto
+import ir.divar.androidtask.data.model.response.WidgetsDto
 import ir.divar.androidtask.data.model.response.PostViewDto
 import ir.divar.androidtask.data.repository.DispatcherProvider
 import ir.divar.androidtask.data.service.PostService
@@ -18,7 +18,7 @@ class DefaultPostRemoteDataSource @Inject constructor(
         accessToken: String?,
         selectedCityId: Int,
         body: PostListRequest
-    ): Result<PostListDto> {
+    ): Result<WidgetsDto> {
         return withContext(dispatcher.io()) {
             safeApiCall {
                 service.getPostList(accessToken, selectedCityId, body)

@@ -10,13 +10,15 @@ import androidx.navigation.compose.composable
 import ir.divar.androidtask.feature.city.CityScreen
 import ir.divar.androidtask.feature.city.CityViewModel
 import ir.divar.androidtask.feature.post.PostScreen
+import ir.divar.androidtask.feature.post.PostViewModel
 import ir.divar.androidtask.feature.postDetail.PostDetailScreen
 
 @Composable
 fun DefaultContent(
     navController: NavHostController,
     paddingValues: PaddingValues,
-    cityViewModel: CityViewModel
+    cityViewModel: CityViewModel,
+    postViewModel: PostViewModel,
 ) {
     NavHost(
         navController = navController,
@@ -33,7 +35,7 @@ fun DefaultContent(
             popExitTransition = null
         ) {
             CityScreen(navController, cityViewModel) {
-                navController.navigate(Screen.Post.route)
+                navController.navigate(route = Screen.Post.route)
             }
         }
 
@@ -46,7 +48,9 @@ fun DefaultContent(
             popEnterTransition = null,
             popExitTransition = null
         ) {
-            PostScreen(navController)
+            PostScreen(navController, postViewModel) {
+                navController.navigate(route = Screen.PostDetails.route)
+            }
         }
 
         composable(

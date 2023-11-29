@@ -3,7 +3,7 @@ package ir.divar.androidtask.data.repository
 import ir.divar.androidtask.data.datasource.PostRemoteDataSource
 import ir.divar.androidtask.data.model.Result
 import ir.divar.androidtask.data.model.request.PostListRequest
-import ir.divar.androidtask.data.model.response.PostListDto
+import ir.divar.androidtask.data.model.response.WidgetsDto
 import ir.divar.androidtask.data.model.response.PostViewDto
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class DefaultPostRepository @Inject constructor(private val remoteDataSource: Po
         accessToken: String?,
         selectedCityId: Int,
         body: PostListRequest
-    ): Result<PostListDto> {
+    ): Result<WidgetsDto> {
         return remoteDataSource.getPostList(accessToken, selectedCityId, body)
     }
 

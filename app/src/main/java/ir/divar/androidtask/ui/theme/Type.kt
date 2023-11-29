@@ -2,8 +2,8 @@ package ir.divar.androidtask.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.sp
 
@@ -11,11 +11,12 @@ import androidx.compose.ui.unit.sp
 val Typography = Typography(
     titleLarge = TextStyle(
         fontFamily = nazaninFontFamily,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Bold,
         fontSize = 22.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp,
-        textDirection = TextDirection.Rtl
+        textDirection = TextDirection.Rtl,
+        textAlign = TextAlign.Start
     ),
     titleMedium = TextStyle(
         fontFamily = nazaninFontFamily,
@@ -23,56 +24,70 @@ val Typography = Typography(
         fontSize = 16.sp,
         lineHeight = 24.0.sp,
         letterSpacing = 0.2.sp,
-        textDirection = TextDirection.Rtl
+        textDirection = TextDirection.Rtl,
+        textAlign = TextAlign.Start
     ),
     titleSmall = TextStyle(
         fontFamily = nazaninFontFamily,
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Bold,
         fontSize = 14.sp,
         lineHeight = 20.0.sp,
         letterSpacing = 0.1.sp,
-        textDirection = TextDirection.Rtl
+        textDirection = TextDirection.Rtl,
+        textAlign = TextAlign.Start
     ),
     bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.0.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
+        textDirection = TextDirection.Rtl,
+        textAlign = TextAlign.Start
     ),
     bodyMedium = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 20.0.sp,
-        letterSpacing = 0.2.sp
+        letterSpacing = 0.2.sp,
+        textDirection = TextDirection.Rtl,
+        textAlign = TextAlign.Start
     ),
     bodySmall = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 16.0.sp,
-        letterSpacing = 0.4.sp
+        letterSpacing = 0.4.sp,
+        textDirection = TextDirection.Rtl,
+        textAlign = TextAlign.Start
     ),
     labelLarge = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 20.0.sp,
-        letterSpacing = 0.1.sp
+        letterSpacing = 0.1.sp,
+        textDirection = TextDirection.Rtl,
+        textAlign = TextAlign.Start
     ),
     labelMedium = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         lineHeight = 16.0.sp,
-        letterSpacing = 0.4.sp
+        letterSpacing = 0.4.sp,
+        textDirection = TextDirection.Rtl,
+        textAlign = TextAlign.Start
     ),
     labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = nazaninFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 11.sp,
         lineHeight = 16.0.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
+        textDirection = TextDirection.Rtl,
+        textAlign = TextAlign.Start
     )
 )
