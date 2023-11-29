@@ -8,11 +8,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ir.divar.androidtask.feature.city.CityScreen
-import ir.divar.androidtask.feature.postDetail.PostDetailScreen
+import ir.divar.androidtask.feature.city.CityViewModel
 import ir.divar.androidtask.feature.post.PostScreen
+import ir.divar.androidtask.feature.postDetail.PostDetailScreen
 
 @Composable
-fun DefaultContent(navController: NavHostController, paddingValues: PaddingValues) {
+fun DefaultContent(
+    navController: NavHostController,
+    paddingValues: PaddingValues,
+    cityViewModel: CityViewModel
+) {
     NavHost(
         navController = navController,
         startDestination = Screen.City.route,
@@ -27,7 +32,9 @@ fun DefaultContent(navController: NavHostController, paddingValues: PaddingValue
             popEnterTransition = null,
             popExitTransition = null
         ) {
-            CityScreen(navController)
+            CityScreen(navController, cityViewModel) {
+                navController.navigate(Screen.Post.route)
+            }
         }
 
         composable(

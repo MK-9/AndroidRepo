@@ -8,9 +8,10 @@ import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import ir.divar.androidtask.feature.city.CityViewModel
 
 @Composable
-fun MainLayout() {
+fun MainLayout(cityViewModel: CityViewModel) {
     val navController = rememberNavController()
 
     Scaffold(
@@ -27,6 +28,10 @@ fun MainLayout() {
         contentColor = contentColorFor(MaterialTheme.colorScheme.background),
         contentWindowInsets = ScaffoldDefaults.contentWindowInsets
     ) { paddingValues ->
-        DefaultContent(navController = navController, paddingValues = paddingValues)
+        DefaultContent(
+            navController = navController,
+            paddingValues = paddingValues,
+            cityViewModel = cityViewModel
+        )
     }
 }
