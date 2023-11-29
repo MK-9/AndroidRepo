@@ -77,7 +77,7 @@ dependencies {
 //    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     // ViewModel utilities for Compose
-//    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // Saved state module for ViewModel
 //    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
@@ -86,7 +86,7 @@ dependencies {
 //    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // Lifecycle utilities for Compose
-//    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
     // kotlin coroutines
     implementation(libs.kotlinx.coroutines.core)
