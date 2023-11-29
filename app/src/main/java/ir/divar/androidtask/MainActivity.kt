@@ -8,6 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.divar.androidtask.data.repository.PlaceRepository
 import ir.divar.androidtask.data.repository.PostRepository
 import ir.divar.androidtask.feature.city.CityViewModel
+import ir.divar.androidtask.feature.post.PostViewModel
 import ir.divar.androidtask.ui.screen.MainLayout
 import ir.divar.androidtask.ui.theme.AndroidTaskTheme
 import javax.inject.Inject
@@ -21,13 +22,14 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var placeRepository: PlaceRepository
 
-    val cityViewModel: CityViewModel by viewModels()
+    private val cityViewModel: CityViewModel by viewModels()
+    private val postViewModel: PostViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AndroidTaskTheme {
-                MainLayout(cityViewModel)
+                MainLayout(cityViewModel, postViewModel)
             }
         }
     }

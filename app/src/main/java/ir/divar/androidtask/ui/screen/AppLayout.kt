@@ -9,9 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import ir.divar.androidtask.feature.city.CityViewModel
+import ir.divar.androidtask.feature.post.PostViewModel
 
 @Composable
-fun MainLayout(cityViewModel: CityViewModel) {
+fun MainLayout(cityViewModel: CityViewModel, postViewModel: PostViewModel) {
     val navController = rememberNavController()
 
     Scaffold(
@@ -31,7 +32,8 @@ fun MainLayout(cityViewModel: CityViewModel) {
         DefaultContent(
             navController = navController,
             paddingValues = paddingValues,
-            cityViewModel = cityViewModel
+            cityViewModel = cityViewModel,
+            postViewModel = postViewModel
         )
     }
 }
