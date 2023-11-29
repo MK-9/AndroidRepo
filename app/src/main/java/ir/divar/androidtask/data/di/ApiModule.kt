@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import ir.divar.androidtask.data.service.PlaceService
 import ir.divar.androidtask.data.service.PostService
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -40,9 +41,13 @@ class ApiModule {
 
     @Provides
     fun provideOkHttp(): OkHttpClient {
+        val logger = HttpLoggingInterceptor()
+        logger.level = HttpLoggingInterceptor.Level.BODY
+
         return OkHttpClient.Builder()
             .readTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
+            .addInterceptor(logger)
             .build()
     }
 

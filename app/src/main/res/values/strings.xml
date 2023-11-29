@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidTask</string>
+    <string name="city">شهر</string>
+    <string name="post">لیست آگهی‌ها</string>
+    <string name="postDetails">جزئیات آگهی</string>
+    <string name="selectCity">لطفا یک شهر را انتخاب کنید:</string>
 </resources>
