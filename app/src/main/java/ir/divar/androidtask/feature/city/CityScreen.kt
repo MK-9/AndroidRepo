@@ -8,8 +8,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -86,26 +89,22 @@ private fun ProgressContent() {
 
 @Composable
 private fun CityScreenItem(title: String, onItemClicked: () -> Unit) {
-    Row(
-        horizontalArrangement = Arrangement.End,
+    ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
-        
+            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .clickable {
+                onItemClicked.invoke()
+            },
+        shape = RoundedCornerShape(corner = CornerSize(8.dp)),
+        colors = CardDefaults.elevatedCardColors()
     ) {
-        Card(
+        Text(
+            text = title,
             modifier = Modifier
-                .padding(8.dp)
-                .clickable {
-                    onItemClicked.invoke()
-                }
-        ) {
-            Text(
-                text = title,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
-                style = MaterialTheme.typography.titleMedium
-            )
-        }
+                .padding(16.dp)
+                .fillMaxWidth(),
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
 }
