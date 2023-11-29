@@ -27,7 +27,7 @@ data class CityItem(
 
 @HiltViewModel
 class CityViewModel @Inject constructor(
-    val placeRepository: PlaceRepository
+    private val placeRepository: PlaceRepository
 ) : ViewModel() {
 
     private var _cityScreenUiState = MutableStateFlow(CityScreenUiState())
