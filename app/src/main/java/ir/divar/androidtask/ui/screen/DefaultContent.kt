@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.screen
+package ir.divar.androidtask.ui.screen
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -7,9 +7,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import ir.divar.androidtask.feature.CityScreen
-import ir.divar.androidtask.feature.PostDetailScreen
-import ir.divar.androidtask.feature.PostScreen
+import ir.divar.androidtask.feature.city.CityScreen
+import ir.divar.androidtask.feature.postDetail.PostDetailScreen
+import ir.divar.androidtask.feature.post.PostScreen
 
 @Composable
 fun DefaultContent(navController: NavHostController, paddingValues: PaddingValues) {

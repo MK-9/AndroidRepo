@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.screen
+package ir.divar.androidtask.ui.screen
 
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.MaterialTheme

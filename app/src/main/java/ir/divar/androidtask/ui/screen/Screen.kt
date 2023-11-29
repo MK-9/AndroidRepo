@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.screen
+package ir.divar.androidtask.ui.screen
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
