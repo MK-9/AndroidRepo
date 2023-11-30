@@ -32,6 +32,8 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.memory.MemoryCache
 import coil.request.ImageRequest
+import ir.divar.androidtask.feature.generic.PostItem
+import ir.divar.androidtask.feature.generic.PostsData
 
 @Composable
 fun PostScreen(
