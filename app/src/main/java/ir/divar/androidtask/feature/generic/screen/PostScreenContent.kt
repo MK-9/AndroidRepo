@@ -25,7 +25,7 @@ fun PostScreenContent(data: PostsData?, onItemClicked: (PostItem) -> Unit) {
                 }
 
                 widgetItem.isHeaderRow() -> {
-                    HeaderRowItem(widgetItem)
+                    HeaderRowItem(widgetItem.data)
                 }
 
                 widgetItem.isTitleRow() -> {
@@ -41,7 +41,7 @@ fun PostScreenContent(data: PostsData?, onItemClicked: (PostItem) -> Unit) {
                 }
 
                 widgetItem.isInfoRow() -> {
-                    InfoRowItem(widgetItem)
+                    InfoRowItem(widgetItem.data)
                 }
 
                 widgetItem.isPostRow() -> {
