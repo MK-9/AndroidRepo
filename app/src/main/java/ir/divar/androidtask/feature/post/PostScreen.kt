@@ -37,9 +37,9 @@ import coil.request.ImageRequest
 fun PostScreen(
     navController: NavHostController,
     viewModel: PostViewModel,
-    onNavigateToPostDetailsScreen: (WidgetItem) -> Unit
+    onNavigateToPostDetailsScreen: (PostItem) -> Unit
 ) {
-    val widgetsUiState by viewModel.widgetScreenUiState.collectAsState()
+    val widgetsUiState by viewModel.postsUiState.collectAsState()
 
     if (widgetsUiState.isLoading) {
         ProgressContent()
@@ -71,21 +71,21 @@ fun NoDataContent() {
 }
 
 @Composable
-fun PostScreenContent(data: WidgetsData?, onItemClicked: (WidgetItem) -> Unit) {
+fun PostScreenContent(data: PostsData?, onItemClicked: (PostItem) -> Unit) {
     val widgets = data?.widgets ?: arrayListOf()
 
     LazyColumn {
         items(items = widgets) { widgetItem ->
             when {
-                widgetItem.widgetType == WidgetItem.WidgetType.TITLE_ROW.name -> {
+                widgetItem.widgetType == PostItem.WidgetType.TITLE_ROW.name -> {
                     TitleRowItem(widgetItem)
                 }
 
-                widgetItem.widgetType == WidgetItem.WidgetType.SUBTITLE_ROW.name -> {
+                widgetItem.widgetType == PostItem.WidgetType.SUBTITLE_ROW.name -> {
                     SubtitleRowItem(widgetItem)
                 }
 
-                widgetItem.widgetType == WidgetItem.WidgetType.POST_ROW.name -> {
+                widgetItem.widgetType == PostItem.WidgetType.POST_ROW.name -> {
                     PostRowItem(widgetItem, onItemClicked)
                 }
             }
@@ -94,7 +94,7 @@ fun PostScreenContent(data: WidgetsData?, onItemClicked: (WidgetItem) -> Unit) {
 }
 
 @Composable
-fun TitleRowItem(widget: WidgetItem) {
+fun TitleRowItem(widget: PostItem) {
     Row {
         Text(
             text = widget.data?.text ?: "",
@@ -109,7 +109,7 @@ fun TitleRowItem(widget: WidgetItem) {
 }
 
 @Composable
-fun SubtitleRowItem(widget: WidgetItem) {
+fun SubtitleRowItem(widget: PostItem) {
     Row {
         Text(
             text = widget.data?.text ?: "",
@@ -126,7 +126,7 @@ fun SubtitleRowItem(widget: WidgetItem) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PostRowItem(widget: WidgetItem, onItemClicked: (WidgetItem) -> Unit) {
+fun PostRowItem(widget: PostItem, onItemClicked: (PostItem) -> Unit) {
     ElevatedCard(
         onClick = { onItemClicked.invoke(widget) }, modifier = Modifier
             .fillMaxWidth()

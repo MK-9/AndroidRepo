@@ -2,7 +2,7 @@ package ir.divar.androidtask.data.model.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class WidgetDataDto(
+data class PostDataDto(
     @SerializedName("title") val title: String?,
     @SerializedName("subtitle") val subtitle: String?,
     @SerializedName("text") val text: String?,
