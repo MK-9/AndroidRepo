@@ -2,8 +2,8 @@ package ir.divar.androidtask.data.repository
 
 import ir.divar.androidtask.data.model.Result
 import ir.divar.androidtask.data.model.request.PostListRequest
-import ir.divar.androidtask.data.model.response.WidgetsDto
-import ir.divar.androidtask.data.model.response.PostViewDto
+import ir.divar.androidtask.data.model.response.PostsDto
+import ir.divar.androidtask.data.model.response.PostDetailsDto
 
 interface PostRepository {
 
@@ -11,8 +11,8 @@ interface PostRepository {
         accessToken: String?,
         selectedCityId: Int,
         body: PostListRequest
-    ): Result<WidgetsDto>
+    ): Result<PostsDto>
 
-    suspend fun getPostView(accessToken: String?, postToken: String?): Result<PostViewDto>
+    suspend fun getPostView(accessToken: String?, postToken: String?): Result<PostDetailsDto>
 
 }

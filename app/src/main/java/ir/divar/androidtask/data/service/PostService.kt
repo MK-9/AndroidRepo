@@ -1,8 +1,8 @@
 package ir.divar.androidtask.data.service
 
 import ir.divar.androidtask.data.model.request.PostListRequest
-import ir.divar.androidtask.data.model.response.WidgetsDto
-import ir.divar.androidtask.data.model.response.PostViewDto
+import ir.divar.androidtask.data.model.response.PostsDto
+import ir.divar.androidtask.data.model.response.PostDetailsDto
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,10 +18,10 @@ interface PostService {
         @Header("x-access-token") accessToken: String?,
         @Query("city") selectedCityId: Int,
         @Body body: PostListRequest
-    ): Response<WidgetsDto>
+    ): Response<PostsDto>
 
     @GET("post/view/{postToken}")
     suspend fun getPostView(
         @Header("x-access-token") accessToken: String?, @Path("postToken") postToken: String?
-    ): Response<PostViewDto>
+    ): Response<PostDetailsDto>
 }
