@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.generic
+package ir.divar.androidtask.feature.generic.uiState
 
 import androidx.compose.runtime.Immutable
 

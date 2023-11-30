@@ -5,11 +5,11 @@ import ir.divar.androidtask.data.model.dto.PostDataDto
 import ir.divar.androidtask.data.model.dto.PostDto
 import ir.divar.androidtask.data.model.response.PostDetailsDto
 import ir.divar.androidtask.data.model.response.PostsDto
-import ir.divar.androidtask.feature.generic.ImageItem
-import ir.divar.androidtask.feature.generic.PostDataItem
-import ir.divar.androidtask.feature.generic.PostDetailsData
-import ir.divar.androidtask.feature.generic.PostItem
-import ir.divar.androidtask.feature.generic.PostsData
+import ir.divar.androidtask.feature.generic.uiState.ImageItem
+import ir.divar.androidtask.feature.generic.uiState.PostDataItem
+import ir.divar.androidtask.feature.generic.uiState.PostDetailsData
+import ir.divar.androidtask.feature.generic.uiState.PostItem
+import ir.divar.androidtask.feature.generic.uiState.PostsData
 
 object PostMapper {
 

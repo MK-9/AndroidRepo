@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.divar.androidtask.data.model.Result
 import ir.divar.androidtask.data.repository.PostRepository
-import ir.divar.androidtask.feature.generic.PostDetailsUiState
+import ir.divar.androidtask.feature.generic.uiState.PostDetailsUiState
 import ir.divar.androidtask.feature.post.PostMapper.toPostDetailsData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
