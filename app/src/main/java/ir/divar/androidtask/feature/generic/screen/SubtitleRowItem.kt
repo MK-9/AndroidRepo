@@ -21,7 +21,7 @@ fun SubtitleRowItem(widget: PostItem) {
                 .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp),
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleSmall,
         )
     }
 }
