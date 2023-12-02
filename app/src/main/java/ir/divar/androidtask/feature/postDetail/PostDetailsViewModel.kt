@@ -1,5 +1,6 @@
 package ir.divar.androidtask.feature.postDetail
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,13 +15,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PostDetailsViewModel @Inject constructor(val repository: PostRepository) : ViewModel() {
+class PostDetailsViewModel @Inject constructor(
+    val savedStateHandle: SavedStateHandle,
+    val repository: PostRepository
+) : ViewModel() {
 
     private var _postDetailsUiState = MutableStateFlow(PostDetailsUiState())
     val postDetailsUiState = _postDetailsUiState.asStateFlow()
 
+    private val token = checkNotNull(savedStateHandle.get<String>("token"))
+
     init {
-        launchPostDetails(POST_TOKEN)
+        launchPostDetails(token)
     }
 
     fun launchPostDetails(token: String?) {

@@ -23,10 +23,6 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var placeRepository: PlaceRepository
 
-//    private val cityViewModel: CityViewModel by viewModels()
-//    private val postViewModel: PostViewModel by viewModels()
-//    private val postDetailsViewModel: PostDetailsViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

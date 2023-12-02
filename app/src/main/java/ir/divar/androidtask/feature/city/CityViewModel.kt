@@ -22,7 +22,7 @@ data class CityScreenUiState(
 
 @Immutable
 data class CityItem(
-    val title: String?, val onItemClicked: (() -> Unit)?
+    val id: Int?, val title: String?, val onItemClicked: (() -> Unit)?
 )
 
 @HiltViewModel
@@ -48,7 +48,7 @@ class CityViewModel @Inject constructor(
 
                 is Result.OnSuccess -> {
                     val items = result.data.cities?.map {
-                        CityItem(it.name, null)
+                        CityItem(it.id, it.name, null)
                     }
 
                     items?.run {
