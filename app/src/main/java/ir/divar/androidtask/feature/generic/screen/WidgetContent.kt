@@ -15,7 +15,7 @@ fun LazyListScope.WidgetContent(widgets: List<PostItem>, onItemClicked: ((PostIt
     items(items = widgets) { widgetItem ->
         when {
             widgetItem.isImageSliderRow() -> {
-                ImageRowItem(widgetItem)
+                ImageSliderRowItem(widgetItem)
             }
 
             widgetItem.isHeaderRow() -> {
@@ -40,10 +40,6 @@ fun LazyListScope.WidgetContent(widgets: List<PostItem>, onItemClicked: ((PostIt
 
             widgetItem.isPostRow() -> {
                 PostRowItem(widgetItem, onItemClicked)
-            }
-
-            widgetItem.isImageSliderRow() -> {
-                ImageRowItem(widgetItem)
             }
         }
     }
