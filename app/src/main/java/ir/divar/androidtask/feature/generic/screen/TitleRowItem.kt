@@ -21,7 +21,7 @@ fun TitleRowItem(widget: PostItem) {
                 .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp),
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.titleMedium,
         )
     }
 }
