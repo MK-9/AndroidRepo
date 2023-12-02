@@ -21,6 +21,6 @@ sealed class Screen(
     )
 
     data object PostDetails : Screen(
-        "postDetail", R.string.postDetails, Icons.Default.Place
+        "postDetails", R.string.postDetails, Icons.Default.Place
     )
 }

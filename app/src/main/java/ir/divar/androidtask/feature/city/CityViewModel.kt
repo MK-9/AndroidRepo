@@ -9,6 +9,7 @@ import ir.divar.androidtask.data.model.Result
 import ir.divar.androidtask.data.repository.PlaceRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,7 +23,7 @@ data class CityScreenUiState(
 
 @Immutable
 data class CityItem(
-    val title: String?, val onItemClicked: (() -> Unit)?
+    val id: Int?, val title: String?, val onItemClicked: (() -> Unit)?
 )
 
 @HiltViewModel
@@ -39,32 +40,36 @@ class CityViewModel @Inject constructor(
 
     private fun launchCity() {
         viewModelScope.launch {
-            when (val result = placeRepository.getPlaceList(ACCESS_TOKEN)) {
-                is Result.InProgress -> {
-                    _cityScreenUiState.update { currentState ->
-                        currentState.copy(isLoading = true)
-                    }
-                }
-
-                is Result.OnSuccess -> {
-                    val items = result.data.cities?.map {
-                        CityItem(it.name, null)
-                    }
-
-                    items?.run {
+            placeRepository.getPlaceList(ACCESS_TOKEN).collectLatest {result->
+                when (result) {
+                    is Result.InProgress -> {
                         _cityScreenUiState.update { currentState ->
-                            currentState.copy(isLoading = false, data = this)
+                            currentState.copy(isLoading = true)
+                        }
+                    }
+
+                    is Result.OnSuccess -> {
+                        val items = result.data.cities?.map {
+                            CityItem(it.id, it.name, null)
+                        }
+
+                        items?.run {
+                            _cityScreenUiState.update { currentState ->
+                                currentState.copy(isLoading = false, data = this)
+                            }
+                        }
+                    }
+
+                    is Result.OnError -> {
+                        Log.d("Result", "OnError")
+                        _cityScreenUiState.update { currentState ->
+                            currentState.copy(isLoading = true)
                         }
                     }
                 }
-
-                is Result.OnError -> {
-                    Log.d("Result", "OnError")
-                    _cityScreenUiState.update { currentState ->
-                        currentState.copy(isLoading = true)
-                    }
-                }
             }
+
+
         }
     }
 

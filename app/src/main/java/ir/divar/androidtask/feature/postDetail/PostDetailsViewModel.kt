@@ -1,14 +1,13 @@
-package ir.divar.androidtask.feature.post
+package ir.divar.androidtask.feature.postDetail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.divar.androidtask.data.model.Result
-import ir.divar.androidtask.data.model.request.PostListRequest
 import ir.divar.androidtask.data.repository.PostRepository
-import ir.divar.androidtask.feature.generic.uiState.PostsUiState
-import ir.divar.androidtask.feature.post.PostMapper.toPostsData
+import ir.divar.androidtask.feature.generic.uiState.PostDetailsUiState
+import ir.divar.androidtask.feature.post.PostMapper.toPostDetailsData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -17,39 +16,39 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PostViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle, private val repository: PostRepository
+class PostDetailsViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle, private val repository: PostRepository
 ) : ViewModel() {
 
-    private val cityId = checkNotNull(savedStateHandle.get<Int>("cityId"))
+    private var _postDetailsUiState = MutableStateFlow(PostDetailsUiState())
+    val postDetailsUiState = _postDetailsUiState.asStateFlow()
 
-    private var _postsUiState = MutableStateFlow(PostsUiState())
-    val postsUiState = _postsUiState.asStateFlow()
+    private val token = checkNotNull(savedStateHandle.get<String>("token"))
 
     init {
-        launchPosts(cityId)
+        launchPostDetails(token)
     }
 
-    fun launchPosts(cityId: Int) {
+    fun launchPostDetails(token: String?) {
         viewModelScope.launch {
-            repository.getPostList(
-                accessToken = ACCESS_TOKEN, selectedCityId = cityId, body = PostListRequest(0, 0)
-            ).collectLatest { result ->
+            repository.getPostView(ACCESS_TOKEN, token).collectLatest { result ->
                 when (result) {
                     is Result.InProgress -> {
-                        _postsUiState.update { currentState ->
+                        _postDetailsUiState.update { currentState ->
                             currentState.copy(isLoading = true)
                         }
                     }
 
                     is Result.OnSuccess -> {
-                        _postsUiState.update { currentState ->
-                            currentState.copy(isLoading = false, data = result.data.toPostsData())
+                        _postDetailsUiState.update { currentState ->
+                            currentState.copy(
+                                isLoading = false, data = result.data.toPostDetailsData()
+                            )
                         }
                     }
 
                     is Result.OnError -> {
-                        _postsUiState.update { currentState ->
+                        _postDetailsUiState.update { currentState ->
                             currentState.copy(isLoading = false)
                         }
                     }
@@ -63,4 +62,3 @@ class PostViewModel @Inject constructor(
             "Basic YXBpa2V5OjY5Y1dxVW8wNGhpNFdMdUdBT2IzMmRXZXQjsllsVzBtSkNiwU9yLUxEamNDUXFMSzJnR29mS3plZg=="
     }
 }
-
