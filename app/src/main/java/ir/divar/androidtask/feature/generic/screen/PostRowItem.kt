@@ -27,9 +27,9 @@ import ir.divar.androidtask.feature.generic.uiState.PostItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PostRowItem(widget: PostItem, onItemClicked: (PostItem) -> Unit) {
+fun PostRowItem(widget: PostItem, onItemClicked: ((PostItem) -> Unit)?) {
     ElevatedCard(
-        onClick = { onItemClicked.invoke(widget) }, modifier = Modifier
+        onClick = { onItemClicked?.invoke(widget) }, modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
     ) {
@@ -66,7 +66,7 @@ fun PostRowItem(widget: PostItem, onItemClicked: (PostItem) -> Unit) {
                     .fillMaxWidth()
                     .padding(start = 16.dp, end = 16.dp, top = 8.dp),
                 overflow = TextOverflow.Ellipsis,
-                maxLines = 1,
+                maxLines = 2,
                 style = MaterialTheme.typography.titleLarge,
             )
 
