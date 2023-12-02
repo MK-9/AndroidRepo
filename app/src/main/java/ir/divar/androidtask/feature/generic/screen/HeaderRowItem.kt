@@ -27,8 +27,8 @@ import ir.divar.androidtask.feature.generic.uiState.PostDataItem
 
 @Composable
 fun HeaderRowItem(widget: PostDataItem?) {
-    widget?.showThumbnail?.run {
-        if (widget.showThumbnail) {
+    widget?.run {
+        if (showThumbnail) {
             HeaderRowWithThumbnail(widget)
         } else {
             HeaderRowWithoutThumbnail(widget)
@@ -46,27 +46,12 @@ fun HeaderRowWithThumbnail(widget: PostDataItem) {
 
         Row(
             modifier = Modifier
-                .fillMaxWidth()
                 .padding(16.dp),
             horizontalArrangement = Arrangement.End
         ) {
             // Intentionally not a state object to avoid recomposition.
             var placeholder: MemoryCache.Key? = null
 
-            //thumbnail
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current).data(widget.thumbnail)
-//                    .placeholderMemoryCacheKey()
-                    .build(),
-                contentDescription = "widget",
-                modifier = Modifier
-                    .size(84.dp)
-                    .clip(RoundedCornerShape(12.dp)),
-                onSuccess = { placeholder = it.result.memoryCacheKey },
-                onError = { ColorPainter(Color.Red) },
-                contentScale = ContentScale.Fit,
-                placeholder = ColorPainter(Color.Gray)
-            )
 
             Column(
                 modifier = Modifier.weight(1f, true), horizontalAlignment = Alignment.Start
@@ -80,7 +65,7 @@ fun HeaderRowWithThumbnail(widget: PostDataItem) {
                             .padding(start = 16.dp, end = 16.dp, top = 8.dp),
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1,
-                        style = MaterialTheme.typography.titleLarge,
+                        style = MaterialTheme.typography.titleMedium,
                     )
                 }
 
@@ -93,11 +78,27 @@ fun HeaderRowWithThumbnail(widget: PostDataItem) {
                             .padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp),
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1,
-                        style = MaterialTheme.typography.titleMedium,
+                        style = MaterialTheme.typography.titleSmall,
                         color = Color.Gray
                     )
                 }
             }
+
+            //thumbnail
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current).data(widget.imageUrl)
+//                    .placeholderMemoryCacheKey()
+                    .build(),
+                contentDescription = "widget",
+                modifier = Modifier
+                    .size(84.dp)
+                    .clip(RoundedCornerShape(12.dp)),
+                onSuccess = { placeholder = it.result.memoryCacheKey },
+                onError = { ColorPainter(Color.Red) },
+                contentScale = ContentScale.Fit,
+                placeholder = ColorPainter(Color.Gray)
+            )
+
         }
     }
 
@@ -114,9 +115,9 @@ fun HeaderRowWithoutThumbnail(widget: PostDataItem) {
                 text = this,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp, top = 8.dp),
+                    .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 4.dp),
                 overflow = TextOverflow.Ellipsis,
-                maxLines = 1,
+                maxLines = 2,
                 style = MaterialTheme.typography.titleLarge,
             )
         }
@@ -127,7 +128,7 @@ fun HeaderRowWithoutThumbnail(widget: PostDataItem) {
                 text = this,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp),
+                    .padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 8.dp),
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
                 style = MaterialTheme.typography.titleMedium,
