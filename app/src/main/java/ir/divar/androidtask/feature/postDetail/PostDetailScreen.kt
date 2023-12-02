@@ -3,13 +3,13 @@ package ir.divar.androidtask.feature.postDetail
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.divar.androidtask.feature.generic.screen.PostScreenDetailsContent
 
 @Composable
 fun PostDetailsScreen(
-    navController: NavHostController,
-    viewModel: PostDetailsViewModel
+    navController: NavHostController, viewModel: PostDetailsViewModel = hiltViewModel()
 ) {
 
     val postDetailsUiState by viewModel.postDetailsUiState.collectAsState()

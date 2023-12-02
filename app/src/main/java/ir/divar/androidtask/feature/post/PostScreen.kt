@@ -11,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.divar.androidtask.feature.generic.screen.PostScreenContent
 import ir.divar.androidtask.feature.generic.uiState.PostItem
@@ -18,7 +19,7 @@ import ir.divar.androidtask.feature.generic.uiState.PostItem
 @Composable
 fun PostScreen(
     navController: NavHostController,
-    viewModel: PostViewModel,
+    viewModel: PostViewModel = hiltViewModel(),
     onNavigateToPostDetailsScreen: (PostItem) -> Unit
 ) {
     val widgetsUiState by viewModel.postsUiState.collectAsState()

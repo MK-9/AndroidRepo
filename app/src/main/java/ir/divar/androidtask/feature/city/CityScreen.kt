@@ -24,13 +24,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.divar.androidtask.R
 
 @Composable
 fun CityScreen(
     navController: NavHostController,
-    viewModel: CityViewModel,
+    viewModel: CityViewModel = hiltViewModel(),
     onNavigateToPostScreen: (CityItem) -> Unit
 ) {
     val uiState by viewModel.cityScreenUiState.collectAsState()

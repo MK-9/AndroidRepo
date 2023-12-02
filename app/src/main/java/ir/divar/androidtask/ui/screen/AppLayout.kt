@@ -13,11 +13,7 @@ import ir.divar.androidtask.feature.post.PostViewModel
 import ir.divar.androidtask.feature.postDetail.PostDetailsViewModel
 
 @Composable
-fun MainLayout(
-    cityViewModel: CityViewModel,
-    postViewModel: PostViewModel,
-    postDetailsViewModel: PostDetailsViewModel
-) {
+fun MainLayout() {
     val navController = rememberNavController()
 
     Scaffold(
@@ -36,10 +32,7 @@ fun MainLayout(
     ) { paddingValues ->
         DefaultContent(
             navController = navController,
-            paddingValues = paddingValues,
-            cityViewModel = cityViewModel,
-            postViewModel = postViewModel,
-            postDetailsViewModel = postDetailsViewModel
+            paddingValues = paddingValues
         )
     }
 }
