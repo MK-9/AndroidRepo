@@ -19,6 +19,7 @@ logging-interceptor = "4.12.0"
 gson = "2.10.1"
 hilt-android = "2.48.1"
 hilt-compiler = "2.48.1"
+hilt-navigation-compose = "1.1.0"
 
 [libraries]
 
@@ -48,6 +49,7 @@ kotlinx-coroutines-core-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx
 #hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-android" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt-compiler" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 
 #test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
