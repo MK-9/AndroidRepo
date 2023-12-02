@@ -11,14 +11,14 @@ import ir.divar.androidtask.feature.generic.uiState.PostsUiState
 import ir.divar.androidtask.feature.post.PostMapper.toPostsData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
-    private val repository: PostRepository
+    private val savedStateHandle: SavedStateHandle, private val repository: PostRepository
 ) : ViewModel() {
 
     private val cityId = checkNotNull(savedStateHandle.get<Int>("cityId"))
@@ -32,25 +32,26 @@ class PostViewModel @Inject constructor(
 
     fun launchPosts(cityId: Int) {
         viewModelScope.launch {
-            val result = repository.getPostList(
+            repository.getPostList(
                 accessToken = ACCESS_TOKEN, selectedCityId = cityId, body = PostListRequest(0, 0)
-            )
-            when (result) {
-                is Result.InProgress -> {
-                    _postsUiState.update { currentState ->
-                        currentState.copy(isLoading = true)
+            ).collectLatest { result ->
+                when (result) {
+                    is Result.InProgress -> {
+                        _postsUiState.update { currentState ->
+                            currentState.copy(isLoading = true)
+                        }
                     }
-                }
 
-                is Result.OnSuccess -> {
-                    _postsUiState.update { currentState ->
-                        currentState.copy(isLoading = false, data = result.data.toPostsData())
+                    is Result.OnSuccess -> {
+                        _postsUiState.update { currentState ->
+                            currentState.copy(isLoading = false, data = result.data.toPostsData())
+                        }
                     }
-                }
 
-                is Result.OnError -> {
-                    _postsUiState.update { currentState ->
-                        currentState.copy(isLoading = false)
+                    is Result.OnError -> {
+                        _postsUiState.update { currentState ->
+                            currentState.copy(isLoading = false)
+                        }
                     }
                 }
             }

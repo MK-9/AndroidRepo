@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.divar.androidtask.feature.generic.screen.PostScreenDetailsContent
+import ir.divar.androidtask.feature.generic.screen.ProgressContent
 
 @Composable
 fun PostDetailsScreen(
@@ -15,7 +16,7 @@ fun PostDetailsScreen(
     val postDetailsUiState by viewModel.postDetailsUiState.collectAsState()
 
     if (postDetailsUiState.isLoading) {
-
+        ProgressContent()
     } else if (postDetailsUiState.data == null || postDetailsUiState.data?.widgets == null || postDetailsUiState.data?.widgets?.size == 0) {
 
     } else if (postDetailsUiState.data?.widgets!!.isNotEmpty()) {
