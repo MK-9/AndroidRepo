@@ -19,6 +19,9 @@ class PostDetailsViewModel @Inject constructor(val repository: PostRepository) :
     private var _postDetailsUiState = MutableStateFlow(PostDetailsUiState())
     val postDetailsUiState = _postDetailsUiState.asStateFlow()
 
+    init {
+        launchPostDetails(POST_TOKEN)
+    }
 
     fun launchPostDetails(token: String?) {
         viewModelScope.launch {
@@ -49,5 +52,7 @@ class PostDetailsViewModel @Inject constructor(val repository: PostRepository) :
     companion object {
         const val ACCESS_TOKEN =
             "Basic YXBpa2V5OjY5Y1dxVW8wNGhpNFdMdUdBT2IzMmRXZXQjsllsVzBtSkNiwU9yLUxEamNDUXFMSzJnR29mS3plZg=="
+
+        const val POST_TOKEN = "QZkhSG5F"
     }
 }
