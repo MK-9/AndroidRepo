@@ -18,7 +18,7 @@ fun TitleRowItem(widget: PostItem) {
             text = widget.data?.text ?: "",
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp),
+                .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 4.dp),
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
             style = MaterialTheme.typography.titleMedium,
