@@ -12,7 +12,7 @@ data class PostDataDto(
     @SerializedName("city") val city: String?,
     @SerializedName("district") val district: String?,
     @SerializedName("image_url") val imageUrl: String?,
-    @SerializedName("show_thumbnail") val showThumbnail: Boolean?,
+    @SerializedName("show_thumbnail") val showThumbnail: Boolean = false,
     @SerializedName("thumbnail") val thumbnail: String?,
     @SerializedName("items") val items: List<ImageItemDto>?,
 ) {

@@ -13,7 +13,7 @@ data class PostDataItem(
     val city: String?,
     val district: String?,
     val imageUrl: String?,
-    val showThumbnail: Boolean?,
+    val showThumbnail: Boolean = false,
     val thumbnail: String?,
     val items: List<ImageItem>?
 )

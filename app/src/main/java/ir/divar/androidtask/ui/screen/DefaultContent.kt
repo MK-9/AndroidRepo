@@ -12,6 +12,7 @@ import ir.divar.androidtask.feature.city.CityViewModel
 import ir.divar.androidtask.feature.post.PostScreen
 import ir.divar.androidtask.feature.post.PostViewModel
 import ir.divar.androidtask.feature.postDetail.PostDetailsScreen
+import ir.divar.androidtask.feature.postDetail.PostDetailsViewModel
 
 @Composable
 fun DefaultContent(
@@ -19,6 +20,7 @@ fun DefaultContent(
     paddingValues: PaddingValues,
     cityViewModel: CityViewModel,
     postViewModel: PostViewModel,
+    postDetailsViewModel: PostDetailsViewModel,
 ) {
     NavHost(
         navController = navController,
@@ -62,7 +64,7 @@ fun DefaultContent(
             popEnterTransition = null,
             popExitTransition = null
         ) {
-            PostDetailsScreen(navController)
+            PostDetailsScreen(navController, postDetailsViewModel)
         }
     }
 }
