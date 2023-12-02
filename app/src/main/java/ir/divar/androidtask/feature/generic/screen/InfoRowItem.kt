@@ -1,6 +1,5 @@
 package ir.divar.androidtask.feature.generic.screen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,35 +25,33 @@ fun InfoRowItem(widget: PostDataItem?) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.End
+                .padding(16.dp)
         ) {
-
-            //title
-            widget?.title?.run {
-                Text(
-                    text = this,
-                    modifier = Modifier
-                        .weight(0.66f, true)
-                        .padding(start = 16.dp, end = 16.dp, top = 8.dp),
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1,
-                    style = MaterialTheme.typography.titleMedium,
-                )
-            }
 
             //value
             widget?.value?.run {
                 Text(
                     text = this,
                     modifier = Modifier
-                        .weight(0.33f, true)
-                        .padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp),
+                        .weight(1f)
+                        .padding(start = 16.dp, end = 4.dp, top = 8.dp, bottom = 8.dp),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
                     textAlign = TextAlign.End,
                     style = MaterialTheme.typography.titleSmall,
                     color = Color.Gray
+                )
+            }
+
+            //title
+            widget?.title?.run {
+                Text(
+                    text = this,
+                    modifier = Modifier
+                        .padding(start = 4.dp, end = 16.dp, top = 8.dp, bottom = 8.dp),
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                    style = MaterialTheme.typography.titleMedium,
                 )
             }
         }
