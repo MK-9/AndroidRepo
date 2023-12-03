@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle, private val repository: PostRepository
+    savedStateHandle: SavedStateHandle, private val repository: PostRepository
 ) : ViewModel() {
 
     private val cityId = checkNotNull(savedStateHandle.get<Int>("cityId"))

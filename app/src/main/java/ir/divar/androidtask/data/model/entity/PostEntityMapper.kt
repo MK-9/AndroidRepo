@@ -1,0 +1,52 @@
+package ir.divar.androidtask.data.model.entity
+
+import ir.divar.androidtask.data.model.dto.PostDataDto
+import ir.divar.androidtask.data.model.dto.PostDto
+import ir.divar.androidtask.data.model.response.PostsDto
+
+object PostEntityMapper {
+
+    fun PostsDto.toPostsDto() = PostsDto(
+        widgets = widgets,
+        lastPostDate = null
+    )
+
+    fun PostEntity.toPostDto() = PostDto(
+        widgetType = widgetType,
+        data = PostDataDto(
+            title = title,
+            subtitle = subtitle,
+            text = text,
+            value = value,
+            token = token,
+            price = price,
+            city = city,
+            district = district,
+            imageUrl = imageUrl,
+            showThumbnail = showThumbnail,
+            thumbnail = thumbnail,
+            items = null
+        )
+    )
+
+    fun PostDto.toPostEntity(
+        lastPostDate: String = "",
+        page: String = ""
+    ) = PostEntity(
+        lastPostDate = "",
+        page = "",
+        widgetType = widgetType,
+        title = data?.title,
+        subtitle = data?.subtitle,
+        text = data?.text,
+        value = data?.value,
+        token = data?.token,
+        price = data?.price,
+        city = data?.city,
+        district = data?.district,
+        imageUrl = data?.imageUrl,
+        showThumbnail = data?.showThumbnail ?: false,
+        thumbnail = data?.thumbnail,
+    )
+
+}
