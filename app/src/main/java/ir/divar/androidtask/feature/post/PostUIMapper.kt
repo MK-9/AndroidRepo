@@ -1,0 +1,92 @@
+package ir.divar.androidtask.feature.post
+
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import ir.divar.androidtask.data.local.entity.PostDataEntity
+import ir.divar.androidtask.data.local.entity.PostEntity
+import ir.divar.androidtask.data.network.models.ImageItemDto
+import ir.divar.androidtask.data.network.models.PostDataDto
+import ir.divar.androidtask.data.network.models.PostDetailsDto
+import ir.divar.androidtask.data.network.models.PostDto
+import ir.divar.androidtask.data.network.models.PostsDto
+import ir.divar.androidtask.feature.generic.uiState.ImageItemUI
+import ir.divar.androidtask.feature.generic.uiState.PostDataItemUI
+import ir.divar.androidtask.feature.generic.uiState.PostDetailsDataUI
+import ir.divar.androidtask.feature.generic.uiState.PostItemUI
+import ir.divar.androidtask.feature.generic.uiState.PostsDataUI
+
+object PostUIMapper {
+
+    fun PostDetailsDto.toPostDetailsData() = PostDetailsDataUI(
+        widgets = widgets?.map { it.toPostItem() },
+        enableContact = enableContact,
+        contactButtonText = contactButtonText
+    )
+
+    fun PostsDto.toPostsData() = PostsDataUI(
+        widgets = widgets?.map { it.toPostItem() }, lastPostDate = lastPostDate
+    )
+
+    private fun PostDto.toPostItem() = PostItemUI(
+        uuid = 0,
+        cityId = 0,
+        page = "",
+        lastPostDate = "",
+        widgetType = widgetType,
+        data = data?.toPostDataItem(),
+        null
+    )
+
+    private fun PostDataDto.toPostDataItem() = PostDataItemUI(title = title,
+        subtitle = subtitle,
+        text = text,
+        value = value,
+        token = token,
+        price = price,
+        city = city,
+        district = district,
+        imageUrl = imageUrl,
+        showThumbnail = showThumbnail,
+        thumbnail = thumbnail,
+        items = items?.map { it.toImageItem() })
+
+    private fun ImageItemDto.toImageItem() = ImageItemUI(imageUrl = imageUrl)
+
+
+    ////////// Post -------> //////////
+//    fun PostDetailsDto.toPostDetailsDatas(id: Int) = PostDetailsDataUI(
+//        widgets = widgets?.map { it.toPostItem(id) },
+//        enableContact = enableContact,
+//        contactButtonText = contactButtonText
+//    )
+
+//    fun PostsDto.toPostsDatsa(id: Int) = PostsDataUI(
+//        widgets = widgets?.map { it.toPostItem(id) }, lastPostDate = lastPostDate
+//    )
+
+    private fun PostEntity.toPostItemUI() = PostItemUI(
+        uuid = uuid,
+        cityId = cityId,
+        page = page,
+        lastPostDate = lastPostDate,
+        widgetType = widgetType,
+        data = data?.toPostDataItemUI(),
+        null
+    )
+
+    private fun PostDataEntity.toPostDataItemUI() = PostDataItemUI(
+        title = title,
+        subtitle = subtitle,
+        text = text,
+        value = value,
+        token = token,
+        price = price,
+        city = city,
+        district = district,
+        imageUrl = imageUrl,
+        showThumbnail = showThumbnail,
+        thumbnail = thumbnail,
+        items = Gson().fromJson(items, object : TypeToken<ImageItemUI>() {}.type)
+    )
+
+}
