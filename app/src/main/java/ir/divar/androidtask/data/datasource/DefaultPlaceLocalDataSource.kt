@@ -13,13 +13,13 @@ class DefaultPlaceLocalDataSource @Inject constructor(
     private val dao: CityDao
 ) : PlaceLocalDataSource {
 
-    override suspend fun getPostList(): List<CityDto> {
+    override suspend fun getCityList(): List<CityDto> {
         return withContext(dispatcher.io()) {
             dao.getAllCities().map { it.toCityDto() }
         }
     }
 
-    override suspend fun insertPost(post: CityDto) {
+    override suspend fun insertCity(post: CityDto) {
         return withContext(dispatcher.io()) {
             dao.insertCity(post.toCityEntity())
         }

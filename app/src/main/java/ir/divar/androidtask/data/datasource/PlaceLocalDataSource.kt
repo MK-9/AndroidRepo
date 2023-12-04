@@ -3,7 +3,7 @@ package ir.divar.androidtask.data.datasource
 import ir.divar.androidtask.data.network.models.CityDto
 
 interface PlaceLocalDataSource {
-    suspend fun getPostList(): List<CityDto>
+    suspend fun getCityList(): List<CityDto>
 
-    suspend fun insertPost(post: CityDto)
+    suspend fun insertCity(post: CityDto)
 }
