@@ -1,9 +1,9 @@
 package ir.divar.androidtask.data.datasource
 
-import ir.divar.androidtask.data.model.dao.PostDao
-import ir.divar.androidtask.data.model.dto.PostDto
-import ir.divar.androidtask.data.model.entity.PostEntityMapper.toPostDto
-import ir.divar.androidtask.data.model.entity.PostEntityMapper.toPostEntity
+import ir.divar.androidtask.data.local.dao.PostDao
+import ir.divar.androidtask.data.network.models.PostDto
+import ir.divar.androidtask.data.local.entity.PostEntityMapper.toPostDto
+import ir.divar.androidtask.data.local.entity.PostEntityMapper.toPostEntity
 import ir.divar.androidtask.data.repository.DispatcherProvider
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

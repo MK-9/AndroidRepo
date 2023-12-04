@@ -1,11 +1,11 @@
 package ir.divar.androidtask.data.datasource
 
-import ir.divar.androidtask.data.model.Result
-import ir.divar.androidtask.data.model.request.PostListRequest
-import ir.divar.androidtask.data.model.dto.PostsDto
-import ir.divar.androidtask.data.model.dto.PostDetailsDto
+import ir.divar.androidtask.data.network.models.Result
+import ir.divar.androidtask.data.network.models.request.PostListRequest
+import ir.divar.androidtask.data.network.models.PostsDto
+import ir.divar.androidtask.data.network.models.PostDetailsDto
 import ir.divar.androidtask.data.repository.DispatcherProvider
-import ir.divar.androidtask.data.service.PostService
+import ir.divar.androidtask.data.network.service.PostService
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 

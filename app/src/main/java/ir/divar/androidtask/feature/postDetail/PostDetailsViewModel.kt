@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.divar.androidtask.data.model.Result
+import ir.divar.androidtask.data.network.models.Result
 import ir.divar.androidtask.data.repository.PostRepository
 import ir.divar.androidtask.feature.generic.uiState.PostDetailsUiState
 import ir.divar.androidtask.feature.post.PostMapper.toPostDetailsData

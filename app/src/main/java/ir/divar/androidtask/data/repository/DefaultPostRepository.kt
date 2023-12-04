@@ -3,10 +3,10 @@ package ir.divar.androidtask.data.repository
 import android.util.Log
 import ir.divar.androidtask.data.datasource.PostLocalDataSource
 import ir.divar.androidtask.data.datasource.PostRemoteDataSource
-import ir.divar.androidtask.data.model.Result
-import ir.divar.androidtask.data.model.request.PostListRequest
-import ir.divar.androidtask.data.model.dto.PostDetailsDto
-import ir.divar.androidtask.data.model.dto.PostsDto
+import ir.divar.androidtask.data.network.models.Result
+import ir.divar.androidtask.data.network.models.request.PostListRequest
+import ir.divar.androidtask.data.network.models.PostDetailsDto
+import ir.divar.androidtask.data.network.models.PostsDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

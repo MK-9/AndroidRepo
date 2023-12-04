@@ -1,10 +1,10 @@
 package ir.divar.androidtask.feature.post
 
-import ir.divar.androidtask.data.model.dto.ImageItemDto
-import ir.divar.androidtask.data.model.dto.PostDataDto
-import ir.divar.androidtask.data.model.dto.PostDto
-import ir.divar.androidtask.data.model.dto.PostDetailsDto
-import ir.divar.androidtask.data.model.dto.PostsDto
+import ir.divar.androidtask.data.network.models.ImageItemDto
+import ir.divar.androidtask.data.network.models.PostDataDto
+import ir.divar.androidtask.data.network.models.PostDto
+import ir.divar.androidtask.data.network.models.PostDetailsDto
+import ir.divar.androidtask.data.network.models.PostsDto
 import ir.divar.androidtask.feature.generic.uiState.ImageItem
 import ir.divar.androidtask.feature.generic.uiState.PostDataItem
 import ir.divar.androidtask.feature.generic.uiState.PostDetailsData

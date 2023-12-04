@@ -1,11 +1,11 @@
 package ir.divar.androidtask.data.datasource
 
-import ir.divar.androidtask.data.model.Result
-import ir.divar.androidtask.data.model.dto.CityDto
-import ir.divar.androidtask.data.model.request.FindPlaceRequest
-import ir.divar.androidtask.data.model.dto.PlaceListDto
+import ir.divar.androidtask.data.network.models.Result
+import ir.divar.androidtask.data.network.models.CityDto
+import ir.divar.androidtask.data.network.models.request.FindPlaceRequest
+import ir.divar.androidtask.data.network.models.PlaceListDto
 import ir.divar.androidtask.data.repository.DispatcherProvider
-import ir.divar.androidtask.data.service.PlaceService
+import ir.divar.androidtask.data.network.service.PlaceService
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 

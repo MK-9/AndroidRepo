@@ -1,6 +1,6 @@
 package ir.divar.androidtask.data.datasource
 
-import ir.divar.androidtask.data.model.Result
+import ir.divar.androidtask.data.network.models.Result
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
