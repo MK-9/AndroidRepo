@@ -1,47 +1,63 @@
 package ir.divar.androidtask.data.local.entity
 
+import ir.divar.androidtask.data.network.models.ImageItemDto
 import ir.divar.androidtask.data.network.models.PostDataDto
 import ir.divar.androidtask.data.network.models.PostDto
 
 object PostEntityMapper {
 
-
     fun PostEntity.toPostDto() = PostDto(
         widgetType = widgetType,
-        data = PostDataDto(
-            title = title,
-            subtitle = subtitle,
-            text = text,
-            value = value,
-            token = token,
-            price = price,
-            city = city,
-            district = district,
-            imageUrl = imageUrl,
-            showThumbnail = showThumbnail,
-            thumbnail = thumbnail,
-            items = null
-        )
+        data = data?.toPostDataDto()
     )
 
-    fun PostDto.toPostEntity(
+    private fun PostDataEntity.toPostDataDto() = PostDataDto(
+        title = title,
+        subtitle = subtitle,
+        text = text,
+        value = value,
+        token = token,
+        price = price,
+        city = city,
+        district = district,
+        imageUrl = imageUrl,
+        showThumbnail = showThumbnail,
+        thumbnail = thumbnail,
+        items = null
+//        items = items?.map { it.toImageItemDto() }
+    )
+
+    private fun ImageItemEntity.toImageItemDto() = ImageItemDto(
+        imageUrl = imageUrl
+    )
+
+    ///////////////////////////////////
+    fun PostDto.toNewPostEntity(
+        page: String = "",
         lastPostDate: String = "",
-        page: String = ""
     ) = PostEntity(
-        lastPostDate = "",
-        page = "",
+        page = page,
+        lastPostDate = lastPostDate,
         widgetType = widgetType,
-        title = data?.title,
-        subtitle = data?.subtitle,
-        text = data?.text,
-        value = data?.value,
-        token = data?.token,
-        price = data?.price,
-        city = data?.city,
-        district = data?.district,
-        imageUrl = data?.imageUrl,
-        showThumbnail = data?.showThumbnail ?: false,
-        thumbnail = data?.thumbnail,
+        data = data?.toPostDataEntity(),
     )
 
+    private fun PostDataDto.toPostDataEntity() = PostDataEntity(
+        title = title,
+        subtitle = subtitle,
+        text = text,
+        value = value,
+        token = token,
+        price = price,
+        city = city,
+        district = district,
+        imageUrl = imageUrl,
+        showThumbnail = showThumbnail,
+        thumbnail = thumbnail,
+//        items = items?.map { it.toNewImageItemEntity() }
+    )
+
+    private fun ImageItemDto.toNewImageItemEntity() = ImageItemEntity(
+        imageUrl = imageUrl
+    )
 }
