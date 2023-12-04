@@ -36,11 +36,19 @@ class CityViewModel @Inject constructor(
 
     init {
         launchCity()
+
+        syncData()
+    }
+
+    private fun syncData() {
+        viewModelScope.launch {
+            placeRepository.syncPlaceList(accessToken = ACCESS_TOKEN)
+        }
     }
 
     private fun launchCity() {
         viewModelScope.launch {
-            placeRepository.getPlaceList(ACCESS_TOKEN).collectLatest {result->
+            placeRepository.getPlaceList().collectLatest { result ->
                 when (result) {
                     is Result.InProgress -> {
                         _cityScreenUiState.update { currentState ->
