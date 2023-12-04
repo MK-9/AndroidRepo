@@ -7,7 +7,9 @@ import ir.divar.androidtask.data.network.models.PlaceListDto
 import kotlinx.coroutines.flow.Flow
 
 interface PlaceRepository {
-    suspend fun getPlaceList(accessToken: String?): Flow<Result<PlaceListDto>>
+    suspend fun getPlaceList(): Flow<Result<PlaceListDto>>
+
+    suspend fun syncPlaceList(accessToken: String?)
 
     suspend fun findPlace(accessToken: String?, body: FindPlaceRequest): Flow<Result<CityDto>>
 }
