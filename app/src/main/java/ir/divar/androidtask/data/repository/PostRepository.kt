@@ -7,7 +7,9 @@ import ir.divar.androidtask.data.network.models.request.PostListRequest
 import kotlinx.coroutines.flow.Flow
 
 interface PostRepository {
-    suspend fun getPostList(selectedCityId: Int, body: PostListRequest): Flow<Result<PostsDto>>
+    suspend fun getPostList(cityId: Int, body: PostListRequest): Flow<Result<PostsDto>>
+
+    suspend fun syncPostList(cityId: Int, body: PostListRequest)
 
     suspend fun getPostView(postToken: String?): Flow<Result<PostDetailsDto>>
 }

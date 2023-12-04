@@ -1,9 +1,10 @@
 package ir.divar.androidtask.data.datasource
 
-import ir.divar.androidtask.data.network.models.PostDto
+import ir.divar.androidtask.data.local.entity.PostEntity
+ import kotlinx.coroutines.flow.Flow
 
 interface PostLocalDataSource {
-    suspend fun getPostList(): List<PostDto>
+    suspend fun getPostList(): Flow<List<PostEntity>>
 
-    suspend fun insertPost(post: PostDto)
+    suspend fun updatePosts(post: List<PostEntity>)
 }

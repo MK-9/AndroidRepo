@@ -1,14 +1,16 @@
 package ir.divar.androidtask.data.repository
 
-import android.util.Log
 import ir.divar.androidtask.data.datasource.PostLocalDataSource
 import ir.divar.androidtask.data.datasource.PostRemoteDataSource
-import ir.divar.androidtask.data.network.models.Result
-import ir.divar.androidtask.data.network.models.request.PostListRequest
+import ir.divar.androidtask.data.local.entity.PostEntityMapper.toPostDto
+import ir.divar.androidtask.data.local.entity.PostEntityMapper.toPostEntity
 import ir.divar.androidtask.data.network.models.PostDetailsDto
 import ir.divar.androidtask.data.network.models.PostsDto
+import ir.divar.androidtask.data.network.models.Result
+import ir.divar.androidtask.data.network.models.request.PostListRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class DefaultPostRepository @Inject constructor(
@@ -17,36 +19,27 @@ class DefaultPostRepository @Inject constructor(
 ) : PostRepository {
 
     override suspend fun getPostList(
-        selectedCityId: Int, body: PostListRequest
-    ): Flow<Result<PostsDto>> = flow {
-        emit(Result.InProgress(true))
+        cityId: Int, body: PostListRequest
+    ): Flow<Result<PostsDto>> {
+        return localDataSource.getPostList().map { post ->
+            val postsDto = PostsDto(widgets = post.map { it.toPostDto() }, lastPostDate = null)
+            Result.OnSuccess(postsDto)
+        }
+    }
 
-//        val localResult = localDataSource.getPostList()
-//        emit(Result.OnSuccess(PostsDto(widgets = localResult, lastPostDate = "")))
-
-//        if (localResult != null){
-//            emit(Result.OnSuccess(localResult.))
-//        }
-
-        when (val result = remoteDataSource.getPostList(selectedCityId, body)) {
+    override suspend fun syncPostList(cityId: Int, body: PostListRequest) {
+        when (val result = remoteDataSource.getPostList(cityId, body)) {
             is Result.OnSuccess -> {
-                emit(Result.InProgress(false))
-                emit(Result.OnSuccess(result.data))
-
-                result.data.widgets?.forEach {
-                    localDataSource.insertPost(it)
+                result.data.widgets?.run {
+                    localDataSource.updatePosts(map { it.toPostEntity() })
                 }
-
-                val users = localDataSource.getPostList()
-                Log.d("getPostList", "size-------:${users.size}")
             }
 
             is Result.OnError -> {
-                emit(Result.InProgress(false))
-                emit(Result.OnError(result.msg))
             }
 
-            is Result.InProgress -> {}
+            is Result.InProgress -> {
+            }
         }
     }
 
