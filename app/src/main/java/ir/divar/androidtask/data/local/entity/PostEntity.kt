@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class PostEntity(
     @PrimaryKey(autoGenerate = true) val uuid: Long = 0,
+    @ColumnInfo("cityId") val cityId: Int?,
     @ColumnInfo("page") val page: String?,
     @ColumnInfo("last_post_date") val lastPostDate: String?,
     @ColumnInfo("widget_type") val widgetType: String?,

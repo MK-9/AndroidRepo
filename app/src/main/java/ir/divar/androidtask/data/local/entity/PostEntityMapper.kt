@@ -29,9 +29,11 @@ object PostEntityMapper {
 
     ///////////////////////////////////
     fun PostDto.toPostEntity(
+        cityId: Int = 0,
         page: String = "",
         lastPostDate: String = "",
     ) = PostEntity(
+        cityId = cityId,
         page = page,
         lastPostDate = lastPostDate,
         widgetType = widgetType,
