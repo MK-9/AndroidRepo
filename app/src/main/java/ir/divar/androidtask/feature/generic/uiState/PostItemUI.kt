@@ -4,7 +4,10 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 data class PostItemUI(
-    val id: Int? = 0,
+    val uuid: Long = 0,
+    val cityId: Int?,
+    val page: String?,
+    val lastPostDate: String?,
     val widgetType: String?,
     val data: PostDataItemUI?,
     val onItemClicked: (() -> Unit)?
