@@ -9,8 +9,7 @@ import ir.divar.androidtask.data.network.models.PostDto
 object PostEntityMapper {
 
     fun PostEntity.toPostDto() = PostDto(
-        widgetType = widgetType,
-        data = data?.toPostDataDto()
+        widgetType = widgetType, data = data?.toPostDataDto()
     )
 
     private fun PostDataEntity.toPostDataDto() = PostDataDto(
