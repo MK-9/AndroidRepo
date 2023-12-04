@@ -12,9 +12,13 @@ class DefaultPostLocalDataSource @Inject constructor(
     private val dao: PostDao,
 ) : PostLocalDataSource {
 
-    override suspend fun getPostList(): Flow<List<PostEntity>> {
+    override suspend fun filterPosts(
+        cityId: Int,
+        page: Int,
+        lastPostDate: Int
+    ): Flow<List<PostEntity>> {
         return withContext(dispatcher.io()) {
-            dao.getAllPosts()
+            dao.filterPosts(cityId, page, lastPostDate)
         }
     }
 

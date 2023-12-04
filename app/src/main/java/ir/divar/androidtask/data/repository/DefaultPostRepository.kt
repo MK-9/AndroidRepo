@@ -18,10 +18,10 @@ class DefaultPostRepository @Inject constructor(
     private val localDataSource: PostLocalDataSource
 ) : PostRepository {
 
-    override suspend fun getPostList(
+    override suspend fun filterPosts(
         cityId: Int, body: PostListRequest
     ): Flow<Result<PostsDto>> {
-        return localDataSource.getPostList().map { post ->
+        return localDataSource.filterPosts(cityId, body.page, body.last_post_date).map { post ->
             val postsDto = PostsDto(widgets = post.map { it.toPostDto() }, lastPostDate = null)
             Result.OnSuccess(postsDto)
         }
@@ -31,7 +31,13 @@ class DefaultPostRepository @Inject constructor(
         when (val result = remoteDataSource.getPostList(cityId, body)) {
             is Result.OnSuccess -> {
                 result.data.widgets?.run {
-                    localDataSource.updatePosts(map { it.toPostEntity() })
+                    localDataSource.updatePosts(map {
+                        it.toPostEntity(
+                            cityId = cityId,
+                            page = body.page.toString(),
+                            lastPostDate = body.last_post_date.toString()
+                        )
+                    })
                 }
             }
 

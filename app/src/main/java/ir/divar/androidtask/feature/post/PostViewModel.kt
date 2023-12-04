@@ -11,8 +11,6 @@ import ir.divar.androidtask.feature.generic.uiState.PostsUiState
 import ir.divar.androidtask.feature.post.PostMapper.toPostsData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,6 +24,8 @@ class PostViewModel @Inject constructor(
 
     private var _postsUiState = MutableStateFlow(PostsUiState())
     val postsUiState = _postsUiState.asStateFlow()
+
+    private var lastPostDate: String? = null
 
     init {
         launchPosts(cityId)
@@ -41,9 +41,11 @@ class PostViewModel @Inject constructor(
 
     private fun launchPosts(cityId: Int) {
         viewModelScope.launch {
-            repository.getPostList(
-                cityId = cityId, body = PostListRequest(0, 0)
+
+            repository.filterPosts(
+                cityId = cityId, body = PostListRequest(0, lastPostDate?.toInt() ?: 0)
             ).collect { result ->
+
                 when (result) {
                     is Result.InProgress -> {
                         _postsUiState.update { currentState ->
@@ -53,6 +55,7 @@ class PostViewModel @Inject constructor(
 
                     is Result.OnSuccess -> {
                         _postsUiState.update { currentState ->
+                            lastPostDate = result.data.lastPostDate
                             currentState.copy(isLoading = false, data = result.data.toPostsData())
                         }
                     }
