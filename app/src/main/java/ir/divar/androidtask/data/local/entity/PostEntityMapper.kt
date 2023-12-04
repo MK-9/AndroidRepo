@@ -28,7 +28,7 @@ object PostEntityMapper {
     )
 
     ///////////////////////////////////
-    fun PostDto.toNewPostEntity(
+    fun PostDto.toPostEntity(
         page: String = "",
         lastPostDate: String = "",
     ) = PostEntity(
