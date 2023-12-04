@@ -34,12 +34,16 @@ fun CityScreen(
     val uiState by viewModel.cityScreenUiState.collectAsState()
 
     when {
-        uiState.isLoading -> {
-            ProgressContent()
-        }
+//        uiState.isLoading -> {
+//            ProgressContent()
+//        }
 
         uiState.data.isNotEmpty() -> {
             CityScreenContent(uiState.data, onNavigateToPostScreen)
+        }
+
+        else -> {
+            ProgressContent()
         }
     }
 }

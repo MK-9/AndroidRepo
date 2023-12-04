@@ -25,7 +25,7 @@ fun PostScreen(
     if (widgetsUiState.isLoading) {
         ProgressContent()
     } else if (widgetsUiState.data == null || widgetsUiState.data?.widgets == null || widgetsUiState.data?.widgets?.size == 0) {
-        NoDataContent()
+        ProgressContent()
     } else if (widgetsUiState.data?.widgets!!.isNotEmpty()) {
         PostScreenContent(widgetsUiState.data, onNavigateToPostDetailsScreen)
     }
