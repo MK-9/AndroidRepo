@@ -27,7 +27,9 @@ import ir.divar.androidtask.feature.generic.uiState.PostItem
 fun ImageSliderRowItem(widget: PostItem) {
     widget.data?.items?.let {
         if (it.size == 1) {
-            FullBanner(imageUrl = it[0].imageUrl)
+            it[0].imageUrl?.run {
+                FullBanner(imageUrl = this)
+            }
         } else {
             SemiFullBanner(it)
         }

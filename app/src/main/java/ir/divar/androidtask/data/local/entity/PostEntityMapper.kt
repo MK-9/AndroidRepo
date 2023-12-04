@@ -1,5 +1,7 @@
 package ir.divar.androidtask.data.local.entity
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import ir.divar.androidtask.data.network.models.ImageItemDto
 import ir.divar.androidtask.data.network.models.PostDataDto
 import ir.divar.androidtask.data.network.models.PostDto
@@ -23,12 +25,7 @@ object PostEntityMapper {
         imageUrl = imageUrl,
         showThumbnail = showThumbnail,
         thumbnail = thumbnail,
-        items = null
-//        items = items?.map { it.toImageItemDto() }
-    )
-
-    private fun ImageItemEntity.toImageItemDto() = ImageItemDto(
-        imageUrl = imageUrl
+        items = Gson().fromJson(items, object : TypeToken<List<ImageItemDto>>() {}.type)
     )
 
     ///////////////////////////////////
@@ -54,10 +51,6 @@ object PostEntityMapper {
         imageUrl = imageUrl,
         showThumbnail = showThumbnail,
         thumbnail = thumbnail,
-//        items = items?.map { it.toNewImageItemEntity() }
-    )
-
-    private fun ImageItemDto.toNewImageItemEntity() = ImageItemEntity(
-        imageUrl = imageUrl
+        items = Gson().toJson(items)
     )
 }

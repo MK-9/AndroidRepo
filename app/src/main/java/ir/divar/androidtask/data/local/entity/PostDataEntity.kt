@@ -14,6 +14,5 @@ data class PostDataEntity(
     @ColumnInfo("image_url") val imageUrl: String?,
     @ColumnInfo("show_thumbnail") val showThumbnail: Boolean,
     @ColumnInfo("thumbnail") val thumbnail: String?,
-
-//    @Embedded val items: List<NewImageItemEntity>?
+    @ColumnInfo("imageItems") val items: String?
 )

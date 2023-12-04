@@ -19,4 +19,4 @@ data class PostDataItem(
 )
 
 @Immutable
-data class ImageItem(val imageUrl: String)
+data class ImageItem(val imageUrl: String?)
