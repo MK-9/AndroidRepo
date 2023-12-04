@@ -5,7 +5,7 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.divar.androidtask.data.model.Result
+import ir.divar.androidtask.data.network.models.Result
 import ir.divar.androidtask.data.repository.PlaceRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -36,11 +36,19 @@ class CityViewModel @Inject constructor(
 
     init {
         launchCity()
+
+        syncData()
+    }
+
+    private fun syncData() {
+        viewModelScope.launch {
+            placeRepository.syncPlaceList()
+        }
     }
 
     private fun launchCity() {
         viewModelScope.launch {
-            placeRepository.getPlaceList(ACCESS_TOKEN).collectLatest {result->
+            placeRepository.getPlaceList().collectLatest { result ->
                 when (result) {
                     is Result.InProgress -> {
                         _cityScreenUiState.update { currentState ->
@@ -71,10 +79,5 @@ class CityViewModel @Inject constructor(
 
 
         }
-    }
-
-    companion object {
-        const val ACCESS_TOKEN =
-            "Basic YXBpa2V5OjY5Y1dxVW8wNGhpNFdMdUdBT2IzMmRXZXQjsllsVzBtSkNiwU9yLUxEamNDUXFMSzJnR29mS3plZg=="
     }
 }

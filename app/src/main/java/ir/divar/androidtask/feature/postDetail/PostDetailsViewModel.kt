@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.divar.androidtask.data.model.Result
+import ir.divar.androidtask.data.network.models.Result
 import ir.divar.androidtask.data.repository.PostRepository
 import ir.divar.androidtask.feature.generic.uiState.PostDetailsUiState
 import ir.divar.androidtask.feature.post.PostMapper.toPostDetailsData
@@ -31,7 +31,7 @@ class PostDetailsViewModel @Inject constructor(
 
     fun launchPostDetails(token: String?) {
         viewModelScope.launch {
-            repository.getPostView(ACCESS_TOKEN, token).collectLatest { result ->
+            repository.getPostView(token).collectLatest { result ->
                 when (result) {
                     is Result.InProgress -> {
                         _postDetailsUiState.update { currentState ->
@@ -55,10 +55,5 @@ class PostDetailsViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    companion object {
-        const val ACCESS_TOKEN =
-            "Basic YXBpa2V5OjY5Y1dxVW8wNGhpNFdMdUdBT2IzMmRXZXQjsllsVzBtSkNiwU9yLUxEamNDUXFMSzJnR29mS3plZg=="
     }
 }

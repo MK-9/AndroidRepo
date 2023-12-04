@@ -1,17 +1,15 @@
 package ir.divar.androidtask.data.repository
 
-import ir.divar.androidtask.data.model.Result
-import ir.divar.androidtask.data.model.request.PostListRequest
-import ir.divar.androidtask.data.model.response.PostDetailsDto
-import ir.divar.androidtask.data.model.response.PostsDto
+import ir.divar.androidtask.data.network.models.PostDetailsDto
+import ir.divar.androidtask.data.network.models.PostsDto
+import ir.divar.androidtask.data.network.models.Result
+import ir.divar.androidtask.data.network.models.request.PostListRequest
 import kotlinx.coroutines.flow.Flow
 
 interface PostRepository {
+    suspend fun filterPosts(cityId: Int, body: PostListRequest): Flow<Result<PostsDto>>
 
-    suspend fun getPostList(
-        accessToken: String?, selectedCityId: Int, body: PostListRequest
-    ): Flow<Result<PostsDto>>
+    suspend fun syncPostList(cityId: Int, body: PostListRequest)
 
-    suspend fun getPostView(accessToken: String?, postToken: String?): Flow<Result<PostDetailsDto>>
-
+    suspend fun getPostView(postToken: String?): Flow<Result<PostDetailsDto>>
 }

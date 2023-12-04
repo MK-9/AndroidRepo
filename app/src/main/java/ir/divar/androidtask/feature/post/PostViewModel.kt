@@ -4,21 +4,20 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.divar.androidtask.data.model.Result
-import ir.divar.androidtask.data.model.request.PostListRequest
+import ir.divar.androidtask.data.network.models.Result
+import ir.divar.androidtask.data.network.models.request.PostListRequest
 import ir.divar.androidtask.data.repository.PostRepository
 import ir.divar.androidtask.feature.generic.uiState.PostsUiState
 import ir.divar.androidtask.feature.post.PostMapper.toPostsData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle, private val repository: PostRepository
+    savedStateHandle: SavedStateHandle, private val repository: PostRepository
 ) : ViewModel() {
 
     private val cityId = checkNotNull(savedStateHandle.get<Int>("cityId"))
@@ -26,15 +25,27 @@ class PostViewModel @Inject constructor(
     private var _postsUiState = MutableStateFlow(PostsUiState())
     val postsUiState = _postsUiState.asStateFlow()
 
+    private var lastPostDate: String? = null
+
     init {
         launchPosts(cityId)
+
+        syncPostList()
     }
 
-    fun launchPosts(cityId: Int) {
+    private fun syncPostList() {
         viewModelScope.launch {
-            repository.getPostList(
-                accessToken = ACCESS_TOKEN, selectedCityId = cityId, body = PostListRequest(0, 0)
-            ).collectLatest { result ->
+            repository.syncPostList(cityId = cityId, body = PostListRequest(0, 0))
+        }
+    }
+
+    private fun launchPosts(cityId: Int) {
+        viewModelScope.launch {
+
+            repository.filterPosts(
+                cityId = cityId, body = PostListRequest(0, lastPostDate?.toInt() ?: 0)
+            ).collect { result ->
+
                 when (result) {
                     is Result.InProgress -> {
                         _postsUiState.update { currentState ->
@@ -44,6 +55,7 @@ class PostViewModel @Inject constructor(
 
                     is Result.OnSuccess -> {
                         _postsUiState.update { currentState ->
+                            lastPostDate = result.data.lastPostDate
                             currentState.copy(isLoading = false, data = result.data.toPostsData())
                         }
                     }
@@ -58,9 +70,5 @@ class PostViewModel @Inject constructor(
         }
     }
 
-    companion object {
-        const val ACCESS_TOKEN =
-            "Basic YXBpa2V5OjY5Y1dxVW8wNGhpNFdMdUdBT2IzMmRXZXQjsllsVzBtSkNiwU9yLUxEamNDUXFMSzJnR29mS3plZg=="
-    }
 }
 

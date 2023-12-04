@@ -1,39 +1,52 @@
 package ir.divar.androidtask.data.repository
 
+import ir.divar.androidtask.data.datasource.PlaceLocalDataSource
 import ir.divar.androidtask.data.datasource.PlaceRemoteDataSource
-import ir.divar.androidtask.data.model.Result
-import ir.divar.androidtask.data.model.dto.CityDto
-import ir.divar.androidtask.data.model.request.FindPlaceRequest
-import ir.divar.androidtask.data.model.response.PlaceListDto
+import ir.divar.androidtask.data.local.entity.CityEntityMapper.toCityDto
+import ir.divar.androidtask.data.local.entity.CityEntityMapper.toCityEntity
+import ir.divar.androidtask.data.network.models.CityDto
+import ir.divar.androidtask.data.network.models.PlaceListDto
+import ir.divar.androidtask.data.network.models.Result
+import ir.divar.androidtask.data.network.models.request.FindPlaceRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class DefaultPlaceRepository @Inject constructor(private val remoteDataSource: PlaceRemoteDataSource) :
-    PlaceRepository {
+class DefaultPlaceRepository @Inject constructor(
+    private val remoteDataSource: PlaceRemoteDataSource,
+    private val localDataSource: PlaceLocalDataSource
+) : PlaceRepository {
 
-    override suspend fun getPlaceList(accessToken: String?): Flow<Result<PlaceListDto>> = flow {
-        emit(Result.InProgress(true))
+    override suspend fun getPlaceList(): Flow<Result<PlaceListDto>> {
+        return localDataSource.getCityList()
+            .map { cities ->
+                val placeListDto = PlaceListDto(cities.map { it.toCityDto() })
+                Result.OnSuccess(placeListDto)
+            }
+    }
 
-        when (val result = remoteDataSource.getPlaceList(accessToken)) {
+    override suspend fun syncPlaceList() {
+        when (val result = remoteDataSource.getPlaceList()) {
             is Result.OnSuccess -> {
-                emit(Result.InProgress(false))
-                emit(Result.OnSuccess(result.data))
+                result.data.cities?.map { it.toCityEntity() }?.run {
+                    localDataSource.updateCities(this)
+                }
             }
 
             is Result.OnError -> {
-                emit(Result.InProgress(false))
-                emit(Result.OnError(result.msg))
             }
 
-            is Result.InProgress -> {}
+            is Result.InProgress -> {
+            }
         }
     }
 
+
     override suspend fun findPlace(
-        accessToken: String?, body: FindPlaceRequest
+        body: FindPlaceRequest
     ): Flow<Result<CityDto>> = flow {
-        when (val result = remoteDataSource.findPlace(accessToken, body)) {
+        when (val result = remoteDataSource.findPlace(body)) {
             is Result.OnSuccess -> {
                 emit(Result.InProgress(false))
                 emit(Result.OnSuccess(result.data))

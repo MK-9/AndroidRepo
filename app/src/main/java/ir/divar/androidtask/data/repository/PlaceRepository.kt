@@ -1,13 +1,15 @@
 package ir.divar.androidtask.data.repository
 
-import ir.divar.androidtask.data.model.Result
-import ir.divar.androidtask.data.model.dto.CityDto
-import ir.divar.androidtask.data.model.request.FindPlaceRequest
-import ir.divar.androidtask.data.model.response.PlaceListDto
+import ir.divar.androidtask.data.network.models.Result
+import ir.divar.androidtask.data.network.models.CityDto
+import ir.divar.androidtask.data.network.models.request.FindPlaceRequest
+import ir.divar.androidtask.data.network.models.PlaceListDto
 import kotlinx.coroutines.flow.Flow
 
 interface PlaceRepository {
-    suspend fun getPlaceList(accessToken: String?): Flow<Result<PlaceListDto>>
+    suspend fun getPlaceList(): Flow<Result<PlaceListDto>>
 
-    suspend fun findPlace(accessToken: String?, body: FindPlaceRequest): Flow<Result<CityDto>>
+    suspend fun syncPlaceList()
+
+    suspend fun findPlace(body: FindPlaceRequest): Flow<Result<CityDto>>
 }

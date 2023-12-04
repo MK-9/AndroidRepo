@@ -1,16 +1,12 @@
 package ir.divar.androidtask.data.datasource
 
-import ir.divar.androidtask.data.model.Result
-import ir.divar.androidtask.data.model.request.PostListRequest
-import ir.divar.androidtask.data.model.response.PostsDto
-import ir.divar.androidtask.data.model.response.PostDetailsDto
+import ir.divar.androidtask.data.network.models.PostDetailsDto
+import ir.divar.androidtask.data.network.models.PostsDto
+import ir.divar.androidtask.data.network.models.Result
+import ir.divar.androidtask.data.network.models.request.PostListRequest
 
 interface PostRemoteDataSource {
-    suspend fun getPostList(
-        accessToken: String?,
-        selectedCityId: Int,
-        body: PostListRequest
-    ): Result<PostsDto>
+    suspend fun getPostList(selectedCityId: Int, body: PostListRequest): Result<PostsDto>
 
-    suspend fun getPostView(accessToken: String?, postToken: String?): Result<PostDetailsDto>
+    suspend fun getPostView(postToken: String?): Result<PostDetailsDto>
 }
