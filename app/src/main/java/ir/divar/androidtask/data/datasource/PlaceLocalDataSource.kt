@@ -1,9 +1,10 @@
 package ir.divar.androidtask.data.datasource
 
-import ir.divar.androidtask.data.network.models.CityDto
+import ir.divar.androidtask.data.local.entity.CityEntity
+import kotlinx.coroutines.flow.Flow
 
 interface PlaceLocalDataSource {
-    suspend fun getCityList(): List<CityDto>
+    suspend fun getCityList(): Flow<List<CityEntity>>
 
-    suspend fun insertCity(post: CityDto)
+    suspend fun updateCities(cities: List<CityEntity>)
 }
