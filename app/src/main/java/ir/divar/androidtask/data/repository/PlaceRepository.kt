@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface PlaceRepository {
     suspend fun getPlaceList(): Flow<Result<PlaceListDto>>
 
-    suspend fun syncPlaceList(accessToken: String?)
+    suspend fun syncPlaceList()
 
-    suspend fun findPlace(accessToken: String?, body: FindPlaceRequest): Flow<Result<CityDto>>
+    suspend fun findPlace(body: FindPlaceRequest): Flow<Result<CityDto>>
 }

@@ -15,24 +15,22 @@ class DefaultPostRemoteDataSource @Inject constructor(
 ) : PostRemoteDataSource {
 
     override suspend fun getPostList(
-        accessToken: String?,
         selectedCityId: Int,
         body: PostListRequest
     ): Result<PostsDto> {
         return withContext(dispatcher.io()) {
             safeApiCall {
-                service.getPostList(accessToken, selectedCityId, body)
+                service.getPostList(selectedCityId, body)
             }
         }
     }
 
     override suspend fun getPostView(
-        accessToken: String?,
         postToken: String?
     ): Result<PostDetailsDto> {
         return withContext(dispatcher.io()) {
             safeApiCall {
-                service.getPostView(accessToken, postToken)
+                service.getPostView(postToken)
             }
         }
     }

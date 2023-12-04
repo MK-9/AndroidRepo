@@ -42,7 +42,7 @@ class CityViewModel @Inject constructor(
 
     private fun syncData() {
         viewModelScope.launch {
-            placeRepository.syncPlaceList(accessToken = ACCESS_TOKEN)
+            placeRepository.syncPlaceList()
         }
     }
 
@@ -79,10 +79,5 @@ class CityViewModel @Inject constructor(
 
 
         }
-    }
-
-    companion object {
-        const val ACCESS_TOKEN =
-            "Basic YXBpa2V5OjY5Y1dxVW8wNGhpNFdMdUdBT2IzMmRXZXQjsllsVzBtSkNiwU9yLUxEamNDUXFMSzJnR29mS3plZg=="
     }
 }

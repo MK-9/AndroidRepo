@@ -32,8 +32,7 @@ class PostViewModel @Inject constructor(
 
     fun launchPosts(cityId: Int) {
         viewModelScope.launch {
-            repository.getPostList(
-                accessToken = ACCESS_TOKEN, selectedCityId = cityId, body = PostListRequest(0, 0)
+            repository.getPostList(selectedCityId = cityId, body = PostListRequest(0, 0)
             ).collectLatest { result ->
                 when (result) {
                     is Result.InProgress -> {
@@ -58,9 +57,5 @@ class PostViewModel @Inject constructor(
         }
     }
 
-    companion object {
-        const val ACCESS_TOKEN =
-            "Basic YXBpa2V5OjY5Y1dxVW8wNGhpNFdMdUdBT2IzMmRXZXQjsllsVzBtSkNiwU9yLUxEamNDUXFMSzJnR29mS3plZg=="
-    }
 }
 

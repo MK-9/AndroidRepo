@@ -17,7 +17,7 @@ class DefaultPostRepository @Inject constructor(
 ) : PostRepository {
 
     override suspend fun getPostList(
-        accessToken: String?, selectedCityId: Int, body: PostListRequest
+        selectedCityId: Int, body: PostListRequest
     ): Flow<Result<PostsDto>> = flow {
         emit(Result.InProgress(true))
 
@@ -28,7 +28,7 @@ class DefaultPostRepository @Inject constructor(
 //            emit(Result.OnSuccess(localResult.))
 //        }
 
-        when (val result = remoteDataSource.getPostList(accessToken, selectedCityId, body)) {
+        when (val result = remoteDataSource.getPostList(selectedCityId, body)) {
             is Result.OnSuccess -> {
                 emit(Result.InProgress(false))
                 emit(Result.OnSuccess(result.data))
@@ -51,11 +51,11 @@ class DefaultPostRepository @Inject constructor(
     }
 
     override suspend fun getPostView(
-        accessToken: String?, postToken: String?
+        postToken: String?
     ): Flow<Result<PostDetailsDto>> = flow {
         emit(Result.InProgress(true))
 
-        when (val result = remoteDataSource.getPostView(accessToken, postToken)) {
+        when (val result = remoteDataSource.getPostView(postToken)) {
             is Result.OnSuccess -> {
                 emit(Result.InProgress(false))
                 emit(Result.OnSuccess(result.data))

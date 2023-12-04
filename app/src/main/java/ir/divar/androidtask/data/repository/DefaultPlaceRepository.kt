@@ -26,8 +26,8 @@ class DefaultPlaceRepository @Inject constructor(
             }
     }
 
-    override suspend fun syncPlaceList(accessToken: String?) {
-        when (val result = remoteDataSource.getPlaceList(accessToken)) {
+    override suspend fun syncPlaceList() {
+        when (val result = remoteDataSource.getPlaceList()) {
             is Result.OnSuccess -> {
                 result.data.cities?.map { it.toCityEntity() }?.run {
                     localDataSource.updateCities(this)
@@ -44,9 +44,9 @@ class DefaultPlaceRepository @Inject constructor(
 
 
     override suspend fun findPlace(
-        accessToken: String?, body: FindPlaceRequest
+        body: FindPlaceRequest
     ): Flow<Result<CityDto>> = flow {
-        when (val result = remoteDataSource.findPlace(accessToken, body)) {
+        when (val result = remoteDataSource.findPlace(body)) {
             is Result.OnSuccess -> {
                 emit(Result.InProgress(false))
                 emit(Result.OnSuccess(result.data))

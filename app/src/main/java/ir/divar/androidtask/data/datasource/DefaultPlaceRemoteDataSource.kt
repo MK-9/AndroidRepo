@@ -14,18 +14,18 @@ class DefaultPlaceRemoteDataSource @Inject constructor(
     private val service: PlaceService
 ) : PlaceRemoteDataSource {
 
-    override suspend fun getPlaceList(accessToken: String?): Result<PlaceListDto> {
+    override suspend fun getPlaceList(): Result<PlaceListDto> {
         return withContext(dispatcher.io()) {
             safeApiCall {
-                service.getPlaceList(accessToken)
+                service.getPlaceList()
             }
         }
     }
 
-    override suspend fun findPlace(accessToken: String?, body: FindPlaceRequest): Result<CityDto> {
+    override suspend fun findPlace(body: FindPlaceRequest): Result<CityDto> {
         return withContext(dispatcher.io()) {
             safeApiCall {
-                service.findPlace(accessToken, body)
+                service.findPlace(body)
             }
         }
     }

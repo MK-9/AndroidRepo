@@ -31,7 +31,7 @@ class PostDetailsViewModel @Inject constructor(
 
     fun launchPostDetails(token: String?) {
         viewModelScope.launch {
-            repository.getPostView(ACCESS_TOKEN, token).collectLatest { result ->
+            repository.getPostView(token).collectLatest { result ->
                 when (result) {
                     is Result.InProgress -> {
                         _postDetailsUiState.update { currentState ->
@@ -55,10 +55,5 @@ class PostDetailsViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    companion object {
-        const val ACCESS_TOKEN =
-            "Basic YXBpa2V5OjY5Y1dxVW8wNGhpNFdMdUdBT2IzMmRXZXQjsllsVzBtSkNiwU9yLUxEamNDUXFMSzJnR29mS3plZg=="
     }
 }
