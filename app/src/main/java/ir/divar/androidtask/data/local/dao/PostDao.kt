@@ -8,11 +8,8 @@ import ir.divar.androidtask.data.local.entity.PostEntity
 @Dao
 interface PostDao {
     @Insert
-    fun insertAll(vararg post: PostEntity)
+    fun insertPost(post: PostEntity)
 
-    @Insert
-    fun insertPost(postEntity: PostEntity)
-
-    @Query("SELECT* FROM postentity")
-    fun getAllPosts(): List<PostEntity>
+    @Query("SELECT* FROM PostEntity")
+    fun getAllPosts():List<PostEntity>
 }
