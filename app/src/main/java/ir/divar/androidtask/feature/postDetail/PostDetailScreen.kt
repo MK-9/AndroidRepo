@@ -18,7 +18,7 @@ fun PostDetailsScreen(
     if (postDetailsUiState.isLoading) {
         ProgressContent()
     } else if (postDetailsUiState.data == null || postDetailsUiState.data?.widgets == null || postDetailsUiState.data?.widgets?.size == 0) {
-
+        ProgressContent()
     } else if (postDetailsUiState.data?.widgets!!.isNotEmpty()) {
         PostScreenDetailsContent(postDetailsUiState.data)
     }
