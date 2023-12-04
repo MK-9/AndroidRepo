@@ -20,11 +20,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import ir.divar.androidtask.feature.generic.uiState.ImageItem
-import ir.divar.androidtask.feature.generic.uiState.PostItem
+import ir.divar.androidtask.feature.generic.uiState.ImageItemUI
+import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 
 @Composable
-fun ImageSliderRowItem(widget: PostItem) {
+fun ImageSliderRowItem(widget: PostItemUI) {
     widget.data?.items?.let {
         if (it.size == 1) {
             it[0].imageUrl?.run {
@@ -37,7 +37,7 @@ fun ImageSliderRowItem(widget: PostItem) {
 }
 
 @Composable
-fun SemiFullBanner(images: List<ImageItem>) {
+fun SemiFullBanner(images: List<ImageItemUI>) {
     LazyRow(
         horizontalArrangement = Arrangement.SpaceBetween, contentPadding = PaddingValues(8.dp)
     ) {

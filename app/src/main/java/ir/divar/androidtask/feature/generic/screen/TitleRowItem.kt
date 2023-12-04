@@ -9,10 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import ir.divar.androidtask.feature.generic.uiState.PostItem
+import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 
 @Composable
-fun TitleRowItem(widget: PostItem) {
+fun TitleRowItem(widget: PostItemUI) {
     Row {
         Text(
             text = widget.data?.text ?: "",

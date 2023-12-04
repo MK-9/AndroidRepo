@@ -13,10 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import ir.divar.androidtask.feature.generic.uiState.PostDetailsData
+import ir.divar.androidtask.feature.generic.uiState.PostDetailsDataUI
 
 @Composable
-fun PostScreenDetailsContent(data: PostDetailsData?) {
+fun PostScreenDetailsContent(data: PostDetailsDataUI?) {
     val widgets = data?.widgets ?: arrayListOf()
     val enableContact = data?.enableContact ?: false
     val contactButtonText = data?.contactButtonText

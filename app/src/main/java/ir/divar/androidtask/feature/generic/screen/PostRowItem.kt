@@ -23,11 +23,11 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.memory.MemoryCache
 import coil.request.ImageRequest
-import ir.divar.androidtask.feature.generic.uiState.PostItem
+import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PostRowItem(widget: PostItem, onItemClicked: ((PostItem) -> Unit)?) {
+fun PostRowItem(widget: PostItemUI, onItemClicked: ((PostItemUI) -> Unit)?) {
     ElevatedCard(
         onClick = { onItemClicked?.invoke(widget) }, modifier = Modifier
             .fillMaxWidth()

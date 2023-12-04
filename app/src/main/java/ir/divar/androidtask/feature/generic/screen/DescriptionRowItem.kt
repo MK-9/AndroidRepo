@@ -10,10 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import ir.divar.androidtask.feature.generic.uiState.PostItem
+import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 
 @Composable
-fun DescriptionRowItem(widget: PostItem) {
+fun DescriptionRowItem(widget: PostItemUI) {
     widget.data?.text?.run {
         ElevatedCard(
             modifier = Modifier

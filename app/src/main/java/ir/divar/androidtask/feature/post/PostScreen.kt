@@ -12,13 +12,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.divar.androidtask.feature.generic.screen.PostScreenContent
 import ir.divar.androidtask.feature.generic.screen.ProgressContent
-import ir.divar.androidtask.feature.generic.uiState.PostItem
+import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 
 @Composable
 fun PostScreen(
     navController: NavHostController,
     viewModel: PostViewModel = hiltViewModel(),
-    onNavigateToPostDetailsScreen: (PostItem) -> Unit
+    onNavigateToPostDetailsScreen: (PostItemUI) -> Unit
 ) {
     val widgetsUiState by viewModel.postsUiState.collectAsState()
 
