@@ -16,8 +16,8 @@ import javax.inject.Singleton
 class DatabaseModule {
 
     @Provides
-    fun providePostDao(appDatabase: AppDatabase): PostDao {
-        return appDatabase.postDao()
+    fun provideNewPostDao(database: AppDatabase): PostDao {
+        return database.postDao()
     }
 
     @Provides
