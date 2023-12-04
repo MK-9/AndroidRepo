@@ -4,7 +4,7 @@ import ir.divar.androidtask.data.datasource.PlaceRemoteDataSource
 import ir.divar.androidtask.data.model.Result
 import ir.divar.androidtask.data.model.dto.CityDto
 import ir.divar.androidtask.data.model.request.FindPlaceRequest
-import ir.divar.androidtask.data.model.response.PlaceListDto
+import ir.divar.androidtask.data.model.dto.PlaceListDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

@@ -2,14 +2,9 @@ package ir.divar.androidtask.data.model.entity
 
 import ir.divar.androidtask.data.model.dto.PostDataDto
 import ir.divar.androidtask.data.model.dto.PostDto
-import ir.divar.androidtask.data.model.response.PostsDto
 
 object PostEntityMapper {
 
-    fun PostsDto.toPostsDto() = PostsDto(
-        widgets = widgets,
-        lastPostDate = null
-    )
 
     fun PostEntity.toPostDto() = PostDto(
         widgetType = widgetType,

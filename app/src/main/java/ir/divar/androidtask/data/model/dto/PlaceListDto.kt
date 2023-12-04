@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.model.response
+package ir.divar.androidtask.data.model.dto
 
 import com.google.gson.annotations.SerializedName
 import ir.divar.androidtask.data.model.dto.CityDto

@@ -2,7 +2,7 @@ package ir.divar.androidtask.data.service
 
 import ir.divar.androidtask.data.model.dto.CityDto
 import ir.divar.androidtask.data.model.request.FindPlaceRequest
-import ir.divar.androidtask.data.model.response.PlaceListDto
+import ir.divar.androidtask.data.model.dto.PlaceListDto
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

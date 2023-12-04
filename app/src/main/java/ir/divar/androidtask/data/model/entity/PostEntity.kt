@@ -9,6 +9,8 @@ data class PostEntity(
     @PrimaryKey(autoGenerate = true) val uuid: Long = 0,
     @ColumnInfo("page") val page: String?,
     @ColumnInfo("last_post_date") val lastPostDate: String?,
+
+
     @ColumnInfo("widget_type") val widgetType: String?,
     @ColumnInfo("title") val title: String?,
     @ColumnInfo("subtitle") val subtitle: String?,

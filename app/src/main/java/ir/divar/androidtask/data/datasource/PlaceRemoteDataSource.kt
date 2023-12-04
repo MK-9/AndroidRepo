@@ -3,7 +3,7 @@ package ir.divar.androidtask.data.datasource
 import ir.divar.androidtask.data.model.Result
 import ir.divar.androidtask.data.model.dto.CityDto
 import ir.divar.androidtask.data.model.request.FindPlaceRequest
-import ir.divar.androidtask.data.model.response.PlaceListDto
+import ir.divar.androidtask.data.model.dto.PlaceListDto
 
 interface PlaceRemoteDataSource {
     suspend fun getPlaceList(accessToken: String?): Result<PlaceListDto>
