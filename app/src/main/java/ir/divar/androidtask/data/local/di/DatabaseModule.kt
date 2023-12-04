@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ir.divar.androidtask.data.local.dao.AppDatabase
+import ir.divar.androidtask.data.local.dao.CityDao
 import ir.divar.androidtask.data.local.dao.PostDao
 import javax.inject.Singleton
 
@@ -16,8 +17,13 @@ import javax.inject.Singleton
 class DatabaseModule {
 
     @Provides
-    fun provideNewPostDao(database: AppDatabase): PostDao {
+    fun providePostDao(database: AppDatabase): PostDao {
         return database.postDao()
+    }
+
+    @Provides
+    fun provideCityDao(database: AppDatabase): CityDao {
+        return database.cityDao()
     }
 
     @Provides
