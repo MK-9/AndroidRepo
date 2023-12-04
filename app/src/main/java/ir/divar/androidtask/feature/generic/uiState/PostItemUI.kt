@@ -3,8 +3,11 @@ package ir.divar.androidtask.feature.generic.uiState
 import androidx.compose.runtime.Immutable
 
 @Immutable
-data class PostItem(
-    val widgetType: String?, val data: PostDataItem?, val onItemClicked: (() -> Unit)?
+data class PostItemUI(
+    val id: Int? = 0,
+    val widgetType: String?,
+    val data: PostDataItemUI?,
+    val onItemClicked: (() -> Unit)?
 ) {
     enum class WidgetType(value: String) {
         TITLE_ROW("TITLE_ROW"),
