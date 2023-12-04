@@ -21,7 +21,8 @@ class DefaultPostRepository @Inject constructor(
     ): Flow<Result<PostsDto>> = flow {
         emit(Result.InProgress(true))
 
-        val localResult = localDataSource.getPostList()
+//        val localResult = localDataSource.getPostList()
+//        emit(Result.OnSuccess(PostsDto(widgets = localResult, lastPostDate = "")))
 
 //        if (localResult != null){
 //            emit(Result.OnSuccess(localResult.))
