@@ -1,9 +1,9 @@
 package ir.divar.androidtask.feature.post
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import ir.divar.androidtask.data.local.entity.PostDataEntity
-import ir.divar.androidtask.data.local.entity.PostEntity
+import ir.divar.androidtask.data.model.ImageItem
+import ir.divar.androidtask.data.model.Post
+import ir.divar.androidtask.data.model.PostData
+import ir.divar.androidtask.data.model.Posts
 import ir.divar.androidtask.data.network.models.ImageItemDto
 import ir.divar.androidtask.data.network.models.PostDataDto
 import ir.divar.androidtask.data.network.models.PostDetailsDto
@@ -24,7 +24,8 @@ object PostUIMapper {
     )
 
     fun PostsDto.toPostsData() = PostsDataUI(
-        widgets = widgets?.map { it.toPostItem() }, lastPostDate = lastPostDate
+        widgets = widgets?.map { it.toPostItem() }
+//        widgets = widgets?.map { it.toPostItem() }, lastPostDate = lastPostDate
     )
 
     private fun PostDto.toPostItem() = PostItemUI(
@@ -53,28 +54,22 @@ object PostUIMapper {
     private fun ImageItemDto.toImageItem() = ImageItemUI(imageUrl = imageUrl)
 
 
-    ////////// Post -------> //////////
-//    fun PostDetailsDto.toPostDetailsDatas(id: Int) = PostDetailsDataUI(
-//        widgets = widgets?.map { it.toPostItem(id) },
-//        enableContact = enableContact,
-//        contactButtonText = contactButtonText
-//    )
+    ////////// Post External Model -------> UI Model //////////
+    fun Posts.toPostsItemUI(): List<PostItemUI>? = widgets?.map {
+        it.toPostItemUI()
+    }
 
-//    fun PostsDto.toPostsDatsa(id: Int) = PostsDataUI(
-//        widgets = widgets?.map { it.toPostItem(id) }, lastPostDate = lastPostDate
-//    )
-
-    private fun PostEntity.toPostItemUI() = PostItemUI(
+    fun Post.toPostItemUI() = PostItemUI(
         uuid = uuid,
         cityId = cityId,
         page = page,
         lastPostDate = lastPostDate,
         widgetType = widgetType,
         data = data?.toPostDataItemUI(),
-        null
+        onItemClicked = {}
     )
 
-    private fun PostDataEntity.toPostDataItemUI() = PostDataItemUI(
+    private fun PostData.toPostDataItemUI() = PostDataItemUI(
         title = title,
         subtitle = subtitle,
         text = text,
@@ -86,7 +81,40 @@ object PostUIMapper {
         imageUrl = imageUrl,
         showThumbnail = showThumbnail,
         thumbnail = thumbnail,
-        items = Gson().fromJson(items, object : TypeToken<ImageItemUI>() {}.type)
+        items = items?.toImagesItemUI()
     )
 
+    private fun List<ImageItem>.toImagesItemUI(): List<ImageItemUI> {
+        return map { ImageItemUI(imageUrl = it.imageUrl) }
+    }
+
+    ////////// UI Model -------> Post External Model //////////
+
+    fun PostItemUI.toPost() = Post(
+        uuid = uuid,
+        cityId = cityId,
+        page = page,
+        lastPostDate = lastPostDate,
+        widgetType = widgetType,
+        data = data?.toPostData()
+    )
+
+    private fun PostDataItemUI.toPostData() = PostData(
+        title = title,
+        subtitle = subtitle,
+        text = text,
+        value = value,
+        token = token,
+        price = price,
+        city = city,
+        district = district,
+        imageUrl = imageUrl,
+        showThumbnail = showThumbnail,
+        thumbnail = thumbnail,
+        items = items?.toImagesItems()
+    )
+
+    private fun List<ImageItemUI>.toImagesItems(): List<ImageItem> {
+        return map { ImageItem(imageUrl = it.imageUrl) }
+    }
 }

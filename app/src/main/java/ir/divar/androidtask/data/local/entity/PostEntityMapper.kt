@@ -4,9 +4,11 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import ir.divar.androidtask.data.model.Post
 import ir.divar.androidtask.data.model.PostData
+import ir.divar.androidtask.data.model.Posts
 import ir.divar.androidtask.data.network.models.ImageItemDto
 import ir.divar.androidtask.data.network.models.PostDataDto
 import ir.divar.androidtask.data.network.models.PostDto
+import ir.divar.androidtask.data.network.models.PostsDto
 
 object PostEntityMapper {
 
@@ -30,6 +32,20 @@ object PostEntityMapper {
     )
 
     ////////////// DTO ---> ENTITY //////////////
+    fun PostsDto.toPostEntity(
+        cityId: Int = 0, page: String = "", lastPostDate: String = ""
+    ): List<PostEntity>? {
+        return widgets?.map {
+            PostEntity(
+                cityId = cityId,
+                page = page,
+                lastPostDate = lastPostDate,
+                widgetType = it.widgetType,
+                data = it.data?.toPostDataEntity(),
+            )
+        }
+    }
+
     fun PostDto.toPostEntity(
         cityId: Int = 0,
         page: String = "",
@@ -58,7 +74,12 @@ object PostEntityMapper {
     )
 
     ////////////// ENTITY ---> EXTERNAL MODEL //////////////
-    fun PostEntity.toPostExternalModel() = Post(
+    fun List<PostEntity>.toPostsExternalModel() = Posts(widgets = map {
+        it.toPostExternalModel()
+    })
+
+    private fun PostEntity.toPostExternalModel() = Post(
+        uuid = uuid,
         cityId = cityId,
         page = page,
         lastPostDate = lastPostDate,
