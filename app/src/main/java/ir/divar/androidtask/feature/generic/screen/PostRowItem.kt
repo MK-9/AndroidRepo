@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
@@ -52,6 +53,7 @@ fun PostRowItem(widget: PostItemUI, onItemClicked: ((PostItemUI) -> Unit)?) {
                 contentDescription = "widget",
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(20.dp)
                     .clip(RoundedCornerShape(12.dp)),
                 onSuccess = { placeholder = it.result.memoryCacheKey },
                 onError = { ColorPainter(Color.Red) },

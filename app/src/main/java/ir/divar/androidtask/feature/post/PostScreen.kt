@@ -21,13 +21,20 @@ fun PostScreen(
     onNavigateToPostDetailsScreen: (PostItemUI) -> Unit
 ) {
     val widgetsUiState by viewModel.postsUiState.collectAsState()
+    val loadingState by viewModel.loadingStateFlow.collectAsState()
 
     if (widgetsUiState.isLoading) {
         ProgressContent()
-    } else if (widgetsUiState.data == null || widgetsUiState.data?.widgets == null || widgetsUiState.data?.widgets?.size == 0) {
+    } else if (widgetsUiState.data == null || widgetsUiState.data?.size == 0) {
         ProgressContent()
-    } else if (widgetsUiState.data?.widgets!!.isNotEmpty()) {
-        PostScreenContent(widgetsUiState.data, onNavigateToPostDetailsScreen)
+    } else if (widgetsUiState.data?.isNotEmpty() == true) {
+        PostScreenContent(
+            widgetsUiState.data,
+            onNavigateToPostDetailsScreen,
+            state = loadingState,
+            loadMore = viewModel::loadNextPage,
+            onRetry = {}
+        )
     }
 }
 

@@ -5,19 +5,20 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isDescriptionRow
 import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isHeaderRow
 import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isImageSliderRow
@@ -25,98 +26,113 @@ import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isInfoRow
 import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isPostRow
 import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isSubtitleRow
 import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isTitleRow
-import ir.divar.androidtask.feature.generic.uiState.PostsDataUI
+import ir.divar.androidtask.feature.generic.uiState.PostItemUI
+import ir.divar.androidtask.feature.post.PlaceHolderState
 
 @Composable
-fun PostScreenContent(data: PostsDataUI?, onItemClicked: (PostItemUI) -> Unit) {
-    val widgets = data?.widgets ?: arrayListOf()
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(8.dp)
-    ) {
-        items(items = widgets) { widgetItem ->
-            when {
-                widgetItem.isImageSliderRow() -> {
-                    ImageSliderRowItem(widgetItem)
-                }
-
-                widgetItem.isHeaderRow() -> {
-                    HeaderRowItem(widgetItem.data)
-                }
-
-                widgetItem.isTitleRow() -> {
-                    TitleRowItem(widgetItem)
-                }
-
-                widgetItem.isSubtitleRow() -> {
-                    SubtitleRowItem(widgetItem)
-                }
-
-                widgetItem.isDescriptionRow() -> {
-                    DescriptionRowItem(widgetItem)
-                }
-
-                widgetItem.isInfoRow() -> {
-                    InfoRowItem(widgetItem.data)
-                }
-
-                widgetItem.isPostRow() -> {
-                    PostRowItem(widgetItem, onItemClicked)
-                }
-            }
-        }
-    }
+fun PostScreenContent(
+    data: List<PostItemUI>?,
+    onItemClicked: (PostItemUI) -> Unit,
+    state: PlaceHolderState,
+    loadMore: () -> Unit,
+    onRetry: () -> Unit
+) {
+    val widgets = data ?: arrayListOf()
+    EndlessColumn(
+        widgets = widgets,
+        state = state,
+        loadMore = loadMore,
+        onRetry = onRetry
+    )
 }
 
 @Composable
-fun EndlessColumn(widgets: List<PostItemUI> = arrayListOf(), loadMore: () -> Unit) {
-    val threshold = 3
+fun EndlessColumn(
+    widgets: List<PostItemUI> = arrayListOf(),
+    state: PlaceHolderState,
+    loadMore: () -> Unit,
+    onRetry: () -> Unit
+) {
+    val threshold = 0
     val lastIndex = widgets.lastIndex
 
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(8.dp)
     ) {
-//        items(count = widgets.size + 1, key = { widgets.getOrNull(it)?.id ?: 0 }) { index ->
-        items(count = widgets.size + 1 ) { index ->
+        items(count = widgets.size + 1, key = { widgets.getOrNull(it)?.uuid ?: 0 }) { index ->
 
             val widget = widgets.getOrNull(index)
+            val parentMaxWidth = Modifier.fillParentMaxWidth()
+
             widget?.run {
 
-                if (index + threshold >= lastIndex) {
+                when (state) {
+                    is PlaceHolderState.Failure -> {
+//                        Log.d("######", "state: Failure")
+                    }
+
+                    is PlaceHolderState.Idle -> {
+                        Log.d("######", "LazyColumn state: Idle")
+                    }
+
+                    PlaceHolderState.Loading -> {
+                        Log.d("######", "LazyColumn state: Loading")
+                    }
+                }
+
+                Log.d("######", "index: $index")
+                Log.d("######", "lastIndex: $lastIndex")
+                if (index + threshold >= lastIndex && state !is PlaceHolderState.Loading){
                     SideEffect {
-                        Log.d("######", "lastIndex: $lastIndex")
                         loadMore()
                     }
                 }
 
                 when {
-                    widget.isImageSliderRow() -> {
-                        ImageSliderRowItem(widget)
+                    isImageSliderRow() -> {
+                        ImageSliderRowItem(this)
                     }
 
-                    widget.isHeaderRow() -> {
-                        HeaderRowItem(widget.data)
+                    isHeaderRow() -> {
+                        HeaderRowItem(this.data)
                     }
 
-                    widget.isTitleRow() -> {
-                        TitleRowItem(widget)
+                    isTitleRow() -> {
+                        TitleRowItem(this)
                     }
 
-                    widget.isSubtitleRow() -> {
-                        SubtitleRowItem(widget)
+                    isSubtitleRow() -> {
+                        SubtitleRowItem(this)
                     }
 
-                    widget.isDescriptionRow() -> {
-                        DescriptionRowItem(widget)
+                    isDescriptionRow() -> {
+                        DescriptionRowItem(this)
                     }
 
-                    widget.isInfoRow() -> {
-                        InfoRowItem(widget.data)
+                    isInfoRow() -> {
+                        InfoRowItem(this.data)
                     }
 
-                    widget.isPostRow() -> {
+                    isPostRow() -> {
                         PostRowItem(widget, null)
                     }
                 }
+
+                return@items
+            }
+
+            when (state) {
+                is PlaceHolderState.Failure -> FailureItem(
+                    throwable = state.throwable,
+                    onRetry = onRetry,
+                    modifier = parentMaxWidth,
+                )
+
+                is PlaceHolderState.Idle -> if (!state.isEmpty) {
+                    Spacer(modifier = parentMaxWidth.requiredHeight(48.dp))
+                }
+
+                PlaceHolderState.Loading -> LoadingItem(modifier = parentMaxWidth)
             }
         }
     }
@@ -125,7 +141,7 @@ fun EndlessColumn(widgets: List<PostItemUI> = arrayListOf(), loadMore: () -> Uni
 @Composable
 fun LoadingItem(modifier: Modifier) {
     Column(
-        modifier = Modifier,
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

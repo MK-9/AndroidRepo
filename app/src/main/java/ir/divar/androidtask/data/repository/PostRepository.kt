@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface PostRepository {
     suspend fun filterPosts(cityId: Int, body: PostListRequest): Flow<Result<Posts>>
 
-    suspend fun syncPostList(cityId: Int, body: PostListRequest)
+    suspend fun syncPostList(cityId: Int, body: PostListRequest) : Flow<Result<Posts>>
 
     suspend fun getPostView(postToken: String?): Flow<Result<PostDetailsDto>>
 }

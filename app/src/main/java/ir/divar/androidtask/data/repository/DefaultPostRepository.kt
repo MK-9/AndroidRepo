@@ -26,7 +26,7 @@ class DefaultPostRepository @Inject constructor(
         }
     }
 
-    override suspend fun syncPostList(cityId: Int, body: PostListRequest) {
+    override suspend fun syncPostList(cityId: Int, body: PostListRequest): Flow<Result<Posts>> = flow {
         when (val result = remoteDataSource.getPostList(cityId, body)) {
             is Result.OnSuccess -> {
                 result.data.run {
@@ -36,6 +36,7 @@ class DefaultPostRepository @Inject constructor(
                         lastPostDate = body.last_post_date.toString()
                     )?.let {
                         localDataSource.updatePosts(it)
+                        emit(Result.OnSuccess(it.toPostsExternalModel()))
                     }
                 }
             }
