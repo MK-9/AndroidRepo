@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -15,6 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isDescriptionRow
@@ -39,6 +43,7 @@ fun PostScreenContent(
     EndlessColumn(
         widgets = widgets,
         state = state,
+        onItemClicked = onItemClicked,
         loadMore = loadMore,
         onRetry = onRetry
     )
@@ -48,6 +53,7 @@ fun PostScreenContent(
 fun EndlessColumn(
     widgets: List<PostItemUI> = arrayListOf(),
     state: PlaceHolderState,
+    onItemClicked: (PostItemUI) -> Unit,
     loadMore: () -> Unit,
     onRetry: () -> Unit
 ) {
@@ -64,23 +70,7 @@ fun EndlessColumn(
 
             widget?.run {
 
-                when (state) {
-                    is PlaceHolderState.Failure -> {
-//                        Log.d("######", "state: Failure")
-                    }
-
-                    is PlaceHolderState.Idle -> {
-//                        Log.d("######", "LazyColumn state: Idle")
-                    }
-
-                    PlaceHolderState.Loading -> {
-//                        Log.d("######", "LazyColumn state: Loading")
-                    }
-                }
-
-//                Log.d("######", "index: $index")
-//                Log.d("######", "lastIndex: $lastIndex")
-                if (index + threshold >= lastIndex && state !is PlaceHolderState.Loading){
+                if (index + threshold >= lastIndex && state !is PlaceHolderState.Loading) {
                     SideEffect {
                         loadMore()
                     }
@@ -112,7 +102,7 @@ fun EndlessColumn(
                     }
 
                     isPostRow() -> {
-                        PostRowItem(widget, null)
+                        PostRowItem(widget, onItemClicked)
                     }
                 }
 
@@ -130,7 +120,8 @@ fun EndlessColumn(
                     Spacer(modifier = parentMaxWidth.requiredHeight(48.dp))
                 }
 
-                PlaceHolderState.Loading -> LoadingItem(modifier = parentMaxWidth)
+                PlaceHolderState.Loading ->
+                    LoadingItem(modifier = parentMaxWidth)
             }
         }
     }
@@ -139,11 +130,21 @@ fun EndlessColumn(
 @Composable
 fun LoadingItem(modifier: Modifier) {
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CircularProgressIndicator()
+        CircularProgressIndicator(
+            modifier = Modifier
+                .width(18.dp)
+                .height(18.dp),
+            color = Color.LightGray,
+            strokeWidth = 1.dp,
+            trackColor = Color.White,
+            strokeCap = StrokeCap.Square
+        )
     }
 }
 
