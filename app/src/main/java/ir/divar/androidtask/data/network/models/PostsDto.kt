@@ -5,5 +5,5 @@ import ir.divar.androidtask.data.network.models.PostDto
 
 data class PostsDto(
     @SerializedName("widget_list") val widgets: List<PostDto>?,
-    @SerializedName("last_post_date") val lastPostDate: String?
+    @SerializedName("last_post_date") val lastPostDate: Long?
 )

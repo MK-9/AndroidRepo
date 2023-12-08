@@ -32,9 +32,7 @@ object PostEntityMapper {
     )
 
     ////////////// DTO ---> ENTITY //////////////
-    fun PostsDto.toPostEntity(
-        cityId: Int = 0, page: String = "", lastPostDate: String = ""
-    ): List<PostEntity>? {
+    fun PostsDto.toPostEntity(cityId: Int = 0, page: String? = ""): List<PostEntity>? {
         return widgets?.map {
             PostEntity(
                 cityId = cityId,
@@ -45,18 +43,6 @@ object PostEntityMapper {
             )
         }
     }
-
-    fun PostDto.toPostEntity(
-        cityId: Int = 0,
-        page: String = "",
-        lastPostDate: String = "",
-    ) = PostEntity(
-        cityId = cityId,
-        page = page,
-        lastPostDate = lastPostDate,
-        widgetType = widgetType,
-        data = data?.toPostDataEntity(),
-    )
 
     private fun PostDataDto.toPostDataEntity() = PostDataEntity(
         title = title,
@@ -76,7 +62,7 @@ object PostEntityMapper {
     ////////////// ENTITY ---> EXTERNAL MODEL //////////////
     fun List<PostEntity>.toPostsExternalModel() = Posts(widgets = map {
         it.toPostExternalModel()
-    })
+    }, lastPostDate = null)
 
     private fun PostEntity.toPostExternalModel() = Post(
         uuid = uuid,

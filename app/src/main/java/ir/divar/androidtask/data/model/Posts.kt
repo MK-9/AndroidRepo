@@ -1,3 +1,3 @@
 package ir.divar.androidtask.data.model
 
-data class Posts(val widgets: List<Post>?)
+data class Posts(val widgets: List<Post>?, val lastPostDate: String?)

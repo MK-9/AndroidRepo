@@ -25,14 +25,13 @@ object PostUIMapper {
 
     fun PostsDto.toPostsData() = PostsDataUI(
         widgets = widgets?.map { it.toPostItem() }
-//        widgets = widgets?.map { it.toPostItem() }, lastPostDate = lastPostDate
     )
 
     private fun PostDto.toPostItem() = PostItemUI(
         uuid = 0,
         cityId = 0,
         page = "",
-        lastPostDate = "",
+        lastPostDate = 0,
         widgetType = widgetType,
         data = data?.toPostDataItem(),
         null

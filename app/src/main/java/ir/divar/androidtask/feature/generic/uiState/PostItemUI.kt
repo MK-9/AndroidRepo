@@ -7,7 +7,7 @@ data class PostItemUI(
     val uuid: Long? = 0,
     val cityId: Int?,
     val page: String?,
-    val lastPostDate: String?,
+    val lastPostDate: Long?,
     val widgetType: String?,
     val data: PostDataItemUI?,
     val onItemClicked: (() -> Unit)?
