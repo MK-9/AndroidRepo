@@ -61,7 +61,7 @@ fun EndlessColumn(
     val lastIndex = widgets.lastIndex
 
     LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(12.dp), contentPadding = PaddingValues(8.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp), contentPadding = PaddingValues(4.dp)
     ) {
         items(count = widgets.size + 1, key = { widgets.getOrNull(it)?.uuid ?: 0 }) { index ->
 

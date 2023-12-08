@@ -53,7 +53,6 @@ fun PostRowItem(widget: PostItemUI, onItemClicked: ((PostItemUI) -> Unit)?) {
                 contentDescription = "widget",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(20.dp)
                     .clip(RoundedCornerShape(12.dp)),
                 onSuccess = { placeholder = it.result.memoryCacheKey },
                 onError = { ColorPainter(Color.Red) },
