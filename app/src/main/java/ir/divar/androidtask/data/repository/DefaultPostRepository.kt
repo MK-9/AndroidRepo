@@ -7,7 +7,6 @@ import ir.divar.androidtask.data.local.entity.PostEntityMapper.toPostsExternalMo
 import ir.divar.androidtask.data.model.Posts
 import ir.divar.androidtask.data.network.models.PostDetailsDto
 import ir.divar.androidtask.data.network.models.Result
-import ir.divar.androidtask.data.network.models.request.PostListRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -18,22 +17,19 @@ class DefaultPostRepository @Inject constructor(
     private val localDataSource: PostLocalDataSource
 ) : PostRepository {
 
-    override suspend fun filterPosts(
-        cityId: Int, body: PostListRequest
-    ): Flow<Result<Posts>> {
-        return localDataSource.filterPosts(cityId, body.page, body.last_post_date).map { post ->
+    override suspend fun filterPosts(cityId: Int): Flow<Result<Posts>> =
+        localDataSource.filterPosts(cityId = cityId).map { post ->
             Result.OnSuccess(post.toPostsExternalModel())
         }
-    }
 
-    override suspend fun syncPostList(cityId: Int, body: PostListRequest): Flow<Result<Posts>> = flow {
-        when (val result = remoteDataSource.getPostList(cityId, body)) {
+    override suspend fun syncPosts(
+        cityId: Int, page: Int, lastPostDate: Long
+    ): Flow<Result<Posts>> = flow {
+        when (val result = remoteDataSource.getPosts(cityId, page, lastPostDate)) {
             is Result.OnSuccess -> {
                 result.data.run {
                     toPostEntity(
-                        cityId = cityId,
-                        page = body.page.toString(),
-                        lastPostDate = body.last_post_date.toString()
+                        cityId = cityId, page = page.toString()
                     )?.let {
                         localDataSource.updatePosts(it)
                         emit(Result.OnSuccess(it.toPostsExternalModel()))
