@@ -1,13 +1,16 @@
 package ir.divar.androidtask.feature.post
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.divar.androidtask.data.model.Posts
 import ir.divar.androidtask.data.network.models.Result
-import ir.divar.androidtask.data.network.models.request.PostListRequest
 import ir.divar.androidtask.data.repository.PostRepository
 import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 import ir.divar.androidtask.feature.generic.uiState.PostsUiState
@@ -38,29 +41,27 @@ class PostViewModel @Inject constructor(
     private var _loadingStateFlow = MutableStateFlow<PlaceHolderState>(PlaceHolderState.Idle(true))
     val loadingStateFlow = _loadingStateFlow.asStateFlow()
 
-    private var lastPostDate: String? = null
-    private var lastPage: Int = 0
+    private var lastPostDate by mutableLongStateOf(0)
+    private var lastPage by mutableIntStateOf(0)
 
     init {
         loadPageInternal()
 
-        syncPostList()
+        syncPosts()
     }
 
     fun loadNextPage() {
         lastPage++
 
         Log.d("######", "lastPage: $lastPage")
-//        Log.d("######", "_loadingStateFlow: loading")
+        Log.d("######", "lastPostDate: $lastPostDate")
 
-        syncPostList()
+        syncPosts()
     }
 
     private fun loadPageInternal() {
         viewModelScope.launch {
-            repository.filterPosts(
-                cityId = cityId, body = PostListRequest(lastPage, lastPostDate?.toInt() ?: 0)
-            ).collect { result ->
+            repository.filterPosts(cityId = cityId).collect { result ->
 
                 when (result) {
                     is Result.InProgress -> {
@@ -70,26 +71,24 @@ class PostViewModel @Inject constructor(
                     }
 
                     is Result.OnSuccess -> {
-                        Log.d("######", "result: OnSuccess")
-
-//                        _loadingStateFlow.value = PlaceHolderState.Idle(false)
-                        val currentList: List<PostItemUI>? = _postsUiState.value.data
-                        Log.d("######", "currentList: ${currentList?.size}")
-
-
                         val posts: Posts = result.data
-                        val newList: List<PostItemUI>? = posts.toPostsItemUI()
+                        var newList: List<PostItemUI>? = posts.toPostsItemUI()
+
+                        if (newList.isNullOrEmpty()) return@collect
+
+                        newList =
+                            newList.filter { post -> post.page == lastPage.toString() }
+
+                        lastPostDate = newList[0].lastPostDate!!
+
+                        val currentList: List<PostItemUI>? = _postsUiState.value.data
 
                         val output = ArrayList<PostItemUI>()
+
                         if (currentList != null) {
                             output.addAll(currentList)
-                            Log.d("######", "output 1: ${output.size}")
                         }
-
-                        if (newList != null) {
-                            output.addAll(newList)
-                            Log.d("######", "output 2: ${output.size}")
-                        }
+                        output.addAll(newList)
 
 
                         _postsUiState.update { currentState ->
@@ -109,13 +108,12 @@ class PostViewModel @Inject constructor(
         }
     }
 
-    private fun syncPostList() {
+    private fun syncPosts() {
         viewModelScope.launch {
             _loadingStateFlow.value = PlaceHolderState.Loading
 
-            repository.syncPostList(
-                cityId = cityId,
-                body = PostListRequest(lastPage, lastPostDate?.toInt() ?: 0)
+            repository.syncPosts(
+                cityId = cityId, page = lastPage, lastPostDate = lastPostDate
             ).collectLatest {
                 when (it) {
                     is Result.OnSuccess -> {

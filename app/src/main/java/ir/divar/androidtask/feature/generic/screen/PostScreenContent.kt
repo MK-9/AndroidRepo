@@ -1,6 +1,5 @@
 package ir.divar.androidtask.feature.generic.screen
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,7 +12,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -72,16 +70,16 @@ fun EndlessColumn(
                     }
 
                     is PlaceHolderState.Idle -> {
-                        Log.d("######", "LazyColumn state: Idle")
+//                        Log.d("######", "LazyColumn state: Idle")
                     }
 
                     PlaceHolderState.Loading -> {
-                        Log.d("######", "LazyColumn state: Loading")
+//                        Log.d("######", "LazyColumn state: Loading")
                     }
                 }
 
-                Log.d("######", "index: $index")
-                Log.d("######", "lastIndex: $lastIndex")
+//                Log.d("######", "index: $index")
+//                Log.d("######", "lastIndex: $lastIndex")
                 if (index + threshold >= lastIndex && state !is PlaceHolderState.Loading){
                     SideEffect {
                         loadMore()
