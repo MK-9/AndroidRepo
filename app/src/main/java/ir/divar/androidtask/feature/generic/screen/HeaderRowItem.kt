@@ -23,10 +23,10 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.memory.MemoryCache
 import coil.request.ImageRequest
-import ir.divar.androidtask.feature.generic.uiState.PostDataItem
+import ir.divar.androidtask.feature.generic.uiState.PostDataItemUI
 
 @Composable
-fun HeaderRowItem(widget: PostDataItem?) {
+fun HeaderRowItem(widget: PostDataItemUI?) {
     widget?.run {
         if (showThumbnail) {
             HeaderRowWithThumbnail(widget)
@@ -37,7 +37,7 @@ fun HeaderRowItem(widget: PostDataItem?) {
 }
 
 @Composable
-fun HeaderRowWithThumbnail(widget: PostDataItem) {
+fun HeaderRowWithThumbnail(widget: PostDataItemUI) {
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -105,7 +105,7 @@ fun HeaderRowWithThumbnail(widget: PostDataItem) {
 }
 
 @Composable
-fun HeaderRowWithoutThumbnail(widget: PostDataItem) {
+fun HeaderRowWithoutThumbnail(widget: PostDataItemUI) {
     Column(
         modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End
     ) {

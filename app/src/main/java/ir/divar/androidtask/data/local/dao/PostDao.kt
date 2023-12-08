@@ -21,14 +21,9 @@ interface PostDao {
     @Query("DELETE FROM PostEntity")
     fun deletePosts()
 
-    @Query(
-        "SELECT* FROM PostEntity" +
-                " WHERE " +
-                "cityId like :cityId " +
-                "and " +
-                "page like :page " +
-                "and " +
-                "last_post_date like :lastPostDate"
-    )
-    fun filterPosts(cityId: Int, page: Int, lastPostDate: Int): Flow<List<PostEntity>>
+    @Query("SELECT* FROM PostEntity WHERE cityId like :cityId")
+    fun filterPosts(cityId: Int): Flow<List<PostEntity>>
+
+    @Query("SELECT * FROM POSTENTITY")
+    fun getAllPosts(): Flow<List<PostEntity>>
 }

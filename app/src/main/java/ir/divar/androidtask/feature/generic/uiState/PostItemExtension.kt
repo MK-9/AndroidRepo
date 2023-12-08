@@ -1,11 +1,11 @@
 package ir.divar.androidtask.feature.generic.uiState
 
 object PostItemExtension {
-    fun PostItem.isHeaderRow() = widgetType == PostItem.WidgetType.HEADER_ROW.name
-    fun PostItem.isPostRow() = widgetType == PostItem.WidgetType.POST_ROW.name
-    fun PostItem.isTitleRow() = widgetType == PostItem.WidgetType.TITLE_ROW.name
-    fun PostItem.isSubtitleRow() = widgetType == PostItem.WidgetType.SUBTITLE_ROW.name
-    fun PostItem.isDescriptionRow() = widgetType == PostItem.WidgetType.DESCRIPTION_ROW.name
-    fun PostItem.isInfoRow() = widgetType == PostItem.WidgetType.INFO_ROW.name
-    fun PostItem.isImageSliderRow() = widgetType == PostItem.WidgetType.IMAGE_SLIDER_ROW.name
+    fun PostItemUI.isHeaderRow() = widgetType == PostItemUI.WidgetType.HEADER_ROW.name
+    fun PostItemUI.isPostRow() = widgetType == PostItemUI.WidgetType.POST_ROW.name
+    fun PostItemUI.isTitleRow() = widgetType == PostItemUI.WidgetType.TITLE_ROW.name
+    fun PostItemUI.isSubtitleRow() = widgetType == PostItemUI.WidgetType.SUBTITLE_ROW.name
+    fun PostItemUI.isDescriptionRow() = widgetType == PostItemUI.WidgetType.DESCRIPTION_ROW.name
+    fun PostItemUI.isInfoRow() = widgetType == PostItemUI.WidgetType.INFO_ROW.name
+    fun PostItemUI.isImageSliderRow() = widgetType == PostItemUI.WidgetType.IMAGE_SLIDER_ROW.name
 }

@@ -12,22 +12,29 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.divar.androidtask.feature.generic.screen.PostScreenContent
 import ir.divar.androidtask.feature.generic.screen.ProgressContent
-import ir.divar.androidtask.feature.generic.uiState.PostItem
+import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 
 @Composable
 fun PostScreen(
     navController: NavHostController,
     viewModel: PostViewModel = hiltViewModel(),
-    onNavigateToPostDetailsScreen: (PostItem) -> Unit
+    onNavigateToPostDetailsScreen: (PostItemUI) -> Unit
 ) {
     val widgetsUiState by viewModel.postsUiState.collectAsState()
+    val loadingState by viewModel.loadingStateFlow.collectAsState()
 
     if (widgetsUiState.isLoading) {
         ProgressContent()
-    } else if (widgetsUiState.data == null || widgetsUiState.data?.widgets == null || widgetsUiState.data?.widgets?.size == 0) {
+    } else if (widgetsUiState.data == null || widgetsUiState.data?.size == 0) {
         ProgressContent()
-    } else if (widgetsUiState.data?.widgets!!.isNotEmpty()) {
-        PostScreenContent(widgetsUiState.data, onNavigateToPostDetailsScreen)
+    } else if (widgetsUiState.data?.isNotEmpty() == true) {
+        PostScreenContent(
+            widgetsUiState.data,
+            onNavigateToPostDetailsScreen,
+            state = loadingState,
+            loadMore = viewModel::loadNextPage,
+            onRetry = {}
+        )
     }
 }
 

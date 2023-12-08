@@ -3,7 +3,7 @@ package ir.divar.androidtask.feature.generic.uiState
 import androidx.compose.runtime.Immutable
 
 @Immutable
-data class PostDataItem(
+data class PostDataItemUI(
     val title: String?,
     val subtitle: String?,
     val text: String?,
@@ -15,8 +15,5 @@ data class PostDataItem(
     val imageUrl: String?,
     val showThumbnail: Boolean = false,
     val thumbnail: String?,
-    val items: List<ImageItem>?
+    val items: List<ImageItemUI>?
 )
-
-@Immutable
-data class ImageItem(val imageUrl: String?)
