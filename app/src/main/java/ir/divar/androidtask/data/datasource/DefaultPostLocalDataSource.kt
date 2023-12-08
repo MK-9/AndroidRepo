@@ -16,14 +16,10 @@ class DefaultPostLocalDataSource @Inject constructor(
 
     private val mutex = Mutex()
 
-    override suspend fun filterPosts(
-        cityId: Int,
-        page: Int,
-        lastPostDate: Int
-    ): Flow<List<PostEntity>> {
+    override suspend fun filterPosts(cityId: Int): Flow<List<PostEntity>> {
         return mutex.withLock {
             withContext(dispatcher.io()) {
-                dao.filterPosts(cityId, page, lastPostDate)
+                dao.filterPosts(cityId)
             }
         }
     }
