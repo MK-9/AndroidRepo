@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -34,6 +36,20 @@ android {
 }
 
 dependencies {
+
+    // Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)    // To use Kotlin annotation processing tool (kapt)
+    implementation(libs.androidx.room.ktx)  // optional - Kotlin Extensions and Coroutines support for Room
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+
+
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)

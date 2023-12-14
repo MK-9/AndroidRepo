@@ -1,10 +1,10 @@
-package ir.divar.androidtask.data.local.dao
+package ir.divar.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
-import ir.divar.androidtask.data.local.entity.PostEntity
+import ir.divar.database.entity.PostEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

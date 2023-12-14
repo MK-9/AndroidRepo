@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.local.entity
+package ir.divar.database.entity
 
 import androidx.room.ColumnInfo
 
