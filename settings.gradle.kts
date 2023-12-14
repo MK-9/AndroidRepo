@@ -15,4 +15,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidTask"
 include(":app")
- 
+include(":feature:city")
+include(":feature:posts")
+include(":feature:postdetails")
+include(":core:database")
+include(":core:network")
+include(":core:model")
