@@ -1,3 +1,3 @@
-package ir.divar.androidtask.data.model
+package ir.divar.model
 
 data class ImageItem(val imageUrl: String?)

@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.model
+package ir.divar.model
 
 data class Centroid(
     val latitude: Double?,
