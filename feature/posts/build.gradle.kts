@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -34,6 +36,22 @@ android {
 }
 
 dependencies {
+    implementation(libs.core.ktx)
+
+    implementation(platform(libs.compose.bom))
+    implementation(libs.activity.compose)
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3)
+    implementation(libs.navigation.compose)
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)   // ViewModel utilities for Compose
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
