@@ -101,15 +101,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core.jvm)
 
-    // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.gson)
-
-    // Add logging in api
-    implementation(libs.okhttp)
-    implementation(libs.logging.interceptor)
-
 
 
     // Image loader

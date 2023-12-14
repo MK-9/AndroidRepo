@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.network.models
+package ir.divar.network.models
 
 import com.google.gson.annotations.SerializedName
 import ir.divar.androidtask.data.network.models.PostDto

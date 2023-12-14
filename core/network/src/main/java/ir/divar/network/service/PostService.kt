@@ -1,8 +1,8 @@
-package ir.divar.androidtask.data.network.service
+package ir.divar.network.service
 
-import ir.divar.androidtask.data.network.models.PostDetailsDto
-import ir.divar.androidtask.data.network.models.PostsDto
-import ir.divar.androidtask.data.network.models.request.PostListRequest
+import ir.divar.network.models.PostDetailsDto
+import ir.divar.network.models.PostsDto
+import ir.divar.network.models.request.PostListRequest
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

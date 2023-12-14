@@ -1,8 +1,8 @@
-package ir.divar.androidtask.data.network.service
+package ir.divar.network.service
 
-import ir.divar.androidtask.data.network.models.CityDto
-import ir.divar.androidtask.data.network.models.PlaceListDto
-import ir.divar.androidtask.data.network.models.request.FindPlaceRequest
+import ir.divar.network.models.CityDto
+import ir.divar.network.models.PlaceListDto
+import ir.divar.network.models.request.FindPlaceRequest
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

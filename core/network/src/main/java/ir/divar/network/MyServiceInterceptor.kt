@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.network
+package ir.divar.network
 
 import okhttp3.Interceptor
 import okhttp3.Response

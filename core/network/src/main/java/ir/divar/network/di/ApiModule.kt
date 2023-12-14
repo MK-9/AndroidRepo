@@ -1,12 +1,12 @@
-package ir.divar.androidtask.data.network.di
+package ir.divar.network.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ir.divar.androidtask.data.network.MyServiceInterceptor
-import ir.divar.androidtask.data.network.service.PlaceService
-import ir.divar.androidtask.data.network.service.PostService
+import ir.divar.network.MyServiceInterceptor
+import ir.divar.network.service.PlaceService
+import ir.divar.network.service.PostService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

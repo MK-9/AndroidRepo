@@ -1,3 +1,3 @@
-package ir.divar.androidtask.data.network.models.request
+package ir.divar.network.models.request
 
 data class PostListRequest(val page: Int, val last_post_date: Long)
