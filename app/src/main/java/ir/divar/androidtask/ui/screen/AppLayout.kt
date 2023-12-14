@@ -8,9 +8,6 @@ import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import ir.divar.androidtask.feature.city.CityViewModel
-import ir.divar.androidtask.feature.post.PostViewModel
-import ir.divar.androidtask.feature.postDetail.PostDetailsViewModel
 
 @Composable
 fun MainLayout() {

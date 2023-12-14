@@ -9,7 +9,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import ir.divar.androidtask.feature.city.CityScreen
+import ir.divar.city.CityScreen
 import ir.divar.androidtask.feature.post.PostScreen
 import ir.divar.androidtask.feature.postDetail.PostDetailsScreen
 

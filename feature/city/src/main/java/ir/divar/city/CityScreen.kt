@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.city
+package ir.divar.city
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -22,7 +22,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import ir.divar.androidtask.R
 import ir.divar.androidtask.feature.generic.screen.ProgressContent
 
 @Composable
