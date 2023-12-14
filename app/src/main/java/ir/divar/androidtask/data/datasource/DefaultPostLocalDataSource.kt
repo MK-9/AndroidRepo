@@ -1,7 +1,7 @@
 package ir.divar.androidtask.data.datasource
 
-import ir.divar.androidtask.data.local.dao.PostDao
-import ir.divar.androidtask.data.local.entity.PostEntity
+import ir.divar.database.dao.PostDao
+import ir.divar.database.entity.PostEntity
 import ir.divar.androidtask.data.repository.DispatcherProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.sync.Mutex

@@ -2,8 +2,8 @@ package ir.divar.androidtask.data.repository
 
 import ir.divar.androidtask.data.datasource.PlaceLocalDataSource
 import ir.divar.androidtask.data.datasource.PlaceRemoteDataSource
-import ir.divar.androidtask.data.local.entity.CityEntityMapper.toCityDto
-import ir.divar.androidtask.data.local.entity.CityEntityMapper.toCityEntity
+import ir.divar.database.entity.CityEntityMapper.toCityDto
+import ir.divar.database.entity.CityEntityMapper.toCityEntity
 import ir.divar.androidtask.data.network.models.CityDto
 import ir.divar.androidtask.data.network.models.PlaceListDto
 import ir.divar.androidtask.data.network.models.Result

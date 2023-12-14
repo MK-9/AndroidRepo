@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
     alias(libs.plugins.kotlin.parcelize)
-    alias(libs.plugins.hilt.android)
+//    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -59,6 +59,14 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:city"))
+    implementation(project(":feature:posts"))
+    implementation(project(":feature:postdetails"))
+
+    implementation(project(":core:database"))
+    implementation(project(":core:network"))
+    implementation(project(":core:model"))
+
     implementation(libs.core.ktx)
 
     implementation(platform(libs.compose.bom))
@@ -102,18 +110,7 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
 
-    // Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
 
-    // Room
-    implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
-    // To use Kotlin annotation processing tool (kapt)
-    kapt(libs.androidx.room.compiler)
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation(libs.androidx.room.ktx)
 
     // Image loader
     implementation(libs.coil.compose)

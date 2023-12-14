@@ -2,8 +2,8 @@ package ir.divar.androidtask.data.repository
 
 import ir.divar.androidtask.data.datasource.PostLocalDataSource
 import ir.divar.androidtask.data.datasource.PostRemoteDataSource
-import ir.divar.androidtask.data.local.entity.PostEntityMapper.toPostEntity
-import ir.divar.androidtask.data.local.entity.PostEntityMapper.toPostsExternalModel
+import ir.divar.database.entity.PostEntityMapper.toPostEntity
+import ir.divar.database.entity.PostEntityMapper.toPostsExternalModel
 import ir.divar.androidtask.data.model.Posts
 import ir.divar.androidtask.data.network.models.PostDetailsDto
 import ir.divar.androidtask.data.network.models.Result

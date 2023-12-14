@@ -1,6 +1,6 @@
 package ir.divar.androidtask.data.datasource
 
-import ir.divar.androidtask.data.local.entity.CityEntity
+import ir.divar.database.entity.CityEntity
 import kotlinx.coroutines.flow.Flow
 
 interface PlaceLocalDataSource {
