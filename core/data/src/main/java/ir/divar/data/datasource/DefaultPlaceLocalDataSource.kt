@@ -1,8 +1,8 @@
-package ir.divar.androidtask.data.datasource
+package ir.divar.data.datasource
 
 import ir.divar.database.dao.CityDao
 import ir.divar.database.entity.CityEntity
-import ir.divar.androidtask.data.repository.DispatcherProvider
+import ir.divar.data.repository.DispatcherProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock

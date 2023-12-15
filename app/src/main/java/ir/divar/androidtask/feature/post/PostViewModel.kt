@@ -11,7 +11,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.divar.androidtask.data.model.Posts
 import ir.divar.androidtask.data.network.models.Result
-import ir.divar.androidtask.data.repository.PostRepository
+import ir.divar.data.repository.PostRepository
 import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 import ir.divar.androidtask.feature.generic.uiState.PostsUiState
 import ir.divar.androidtask.feature.post.PostUIMapper.toPostsItemUI
@@ -30,7 +30,7 @@ sealed class PlaceHolderState {
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle, private val repository: PostRepository
+    savedStateHandle: SavedStateHandle, private val repository: ir.divar.data.repository.PostRepository
 ) : ViewModel() {
 
     private val cityId = checkNotNull(savedStateHandle.get<Int>("cityId"))

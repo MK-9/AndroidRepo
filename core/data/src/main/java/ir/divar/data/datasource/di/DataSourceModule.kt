@@ -1,19 +1,19 @@
-package ir.divar.androidtask.data.datasource.di
+package ir.divar.data.datasource.di
 
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ir.divar.androidtask.data.datasource.DefaultPlaceLocalDataSource
-import ir.divar.androidtask.data.datasource.DefaultPlaceRemoteDataSource
-import ir.divar.androidtask.data.datasource.DefaultPostLocalDataSource
-import ir.divar.androidtask.data.datasource.DefaultPostRemoteDataSource
-import ir.divar.androidtask.data.datasource.PlaceLocalDataSource
-import ir.divar.androidtask.data.datasource.PlaceRemoteDataSource
-import ir.divar.androidtask.data.datasource.PostLocalDataSource
-import ir.divar.androidtask.data.datasource.PostRemoteDataSource
-import ir.divar.androidtask.data.repository.DefaultDispatcherProvider
-import ir.divar.androidtask.data.repository.DispatcherProvider
+import ir.divar.data.datasource.DefaultPlaceLocalDataSource
+import ir.divar.data.datasource.DefaultPlaceRemoteDataSource
+import ir.divar.data.datasource.DefaultPostLocalDataSource
+import ir.divar.data.datasource.DefaultPostRemoteDataSource
+import ir.divar.data.datasource.PlaceLocalDataSource
+import ir.divar.data.datasource.PlaceRemoteDataSource
+import ir.divar.data.datasource.PostLocalDataSource
+import ir.divar.data.datasource.PostRemoteDataSource
+import ir.divar.data.repository.DefaultDispatcherProvider
+import ir.divar.data.repository.DispatcherProvider
 
 @Module
 @InstallIn(SingletonComponent::class)

@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.datasource
+package ir.divar.data.datasource
 
 import ir.divar.database.entity.CityEntity
 import kotlinx.coroutines.flow.Flow

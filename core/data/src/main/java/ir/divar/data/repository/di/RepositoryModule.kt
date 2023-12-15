@@ -1,13 +1,13 @@
-package ir.divar.androidtask.data.repository.di
+package ir.divar.data.repository.di
 
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ir.divar.androidtask.data.repository.DefaultPlaceRepository
-import ir.divar.androidtask.data.repository.DefaultPostRepository
-import ir.divar.androidtask.data.repository.PlaceRepository
-import ir.divar.androidtask.data.repository.PostRepository
+import ir.divar.data.repository.DefaultPlaceRepository
+import ir.divar.data.repository.DefaultPostRepository
+import ir.divar.data.repository.PlaceRepository
+import ir.divar.data.repository.PostRepository
 
 @Module
 @InstallIn(SingletonComponent::class)

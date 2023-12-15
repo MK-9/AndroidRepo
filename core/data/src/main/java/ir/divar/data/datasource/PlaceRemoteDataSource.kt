@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.datasource
+package ir.divar.data.datasource
 
 import ir.divar.androidtask.data.network.models.CityDto
 import ir.divar.androidtask.data.network.models.PlaceListDto

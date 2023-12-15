@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.repository
+package ir.divar.data.repository
 
 import javax.inject.Inject
 

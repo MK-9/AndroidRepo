@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.divar.androidtask.data.network.models.Result
-import ir.divar.androidtask.data.repository.PostRepository
+import ir.divar.data.repository.PostRepository
 import ir.divar.androidtask.feature.generic.uiState.PostDetailsUiState
 import ir.divar.androidtask.feature.post.PostUIMapper.toPostDetailsData
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PostDetailsViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle, private val repository: PostRepository
+    savedStateHandle: SavedStateHandle, private val repository: ir.divar.data.repository.PostRepository
 ) : ViewModel() {
 
     private var _postDetailsUiState = MutableStateFlow(PostDetailsUiState())

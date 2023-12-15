@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.repository
+package ir.divar.data.repository
 
 import ir.divar.androidtask.data.network.models.Result
 import ir.divar.androidtask.data.network.models.CityDto

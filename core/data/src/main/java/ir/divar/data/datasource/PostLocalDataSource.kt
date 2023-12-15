@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.datasource
+package ir.divar.data.datasource
 
 import ir.divar.database.entity.PostEntity
 import kotlinx.coroutines.flow.Flow
