@@ -1,5 +1,6 @@
 package ir.divar.data.repository
 
+import ir.divar.common.Result
 import ir.divar.network.models.CityDto
 import ir.divar.network.models.PlaceListDto
 import ir.divar.network.models.request.FindPlaceRequest

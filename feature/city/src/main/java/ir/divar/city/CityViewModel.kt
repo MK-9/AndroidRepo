@@ -5,6 +5,8 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import ir.divar.common.Result
+import ir.divar.data.repository.PlaceRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -12,7 +14,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@androidx.compose.runtime.Immutable
+@Immutable
 data class CityScreenUiState(
     val isLoading: Boolean = false,
     val data: List<CityItem> = emptyList(),

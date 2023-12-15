@@ -10,8 +10,9 @@ import ir.divar.network.models.PostDetailsDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class DefaultPostRepository constructor(
+class DefaultPostRepository @Inject constructor(
     private val remoteDataSource: PostRemoteDataSource,
     private val localDataSource: PostLocalDataSource
 ) : PostRepository {
