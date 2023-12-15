@@ -1,4 +1,4 @@
-package ir.divar.network.models
+package ir.divar.common
 
 sealed class Result<out T : Any> {
     data class OnSuccess<out T : Any>(val data: T) : Result<T>()
