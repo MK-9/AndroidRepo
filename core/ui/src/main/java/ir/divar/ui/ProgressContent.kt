@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.generic.screen
+package ir.divar.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
