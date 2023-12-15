@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.divar.androidtask.feature.generic.screen.PostScreenContent
-import ir.divar.androidtask.feature.generic.screen.ProgressContent
+import ir.divar.ui.ProgressContent
 import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 
 @Composable
@@ -24,9 +24,9 @@ fun PostScreen(
     val loadingState by viewModel.loadingStateFlow.collectAsState()
 
     if (widgetsUiState.isLoading) {
-        ProgressContent()
+        ir.divar.ui.ProgressContent()
     } else if (widgetsUiState.data == null || widgetsUiState.data?.size == 0) {
-        ProgressContent()
+        ir.divar.ui.ProgressContent()
     } else if (widgetsUiState.data?.isNotEmpty() == true) {
         PostScreenContent(
             widgetsUiState.data,
