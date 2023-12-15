@@ -1,9 +1,9 @@
 package ir.divar.data.repository
 
-import ir.divar.androidtask.data.model.Posts
-import ir.divar.androidtask.data.network.models.PostDetailsDto
-import ir.divar.androidtask.data.network.models.Result
+import ir.divar.model.Posts
+import ir.divar.network.models.PostDetailsDto
 import kotlinx.coroutines.flow.Flow
+import ir.divar.common.Result
 
 interface PostRepository {
     suspend fun filterPosts(cityId: Int): Flow<Result<Posts>>

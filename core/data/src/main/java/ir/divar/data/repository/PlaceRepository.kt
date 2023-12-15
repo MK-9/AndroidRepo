@@ -1,9 +1,8 @@
 package ir.divar.data.repository
 
-import ir.divar.androidtask.data.network.models.Result
-import ir.divar.androidtask.data.network.models.CityDto
-import ir.divar.androidtask.data.network.models.request.FindPlaceRequest
-import ir.divar.androidtask.data.network.models.PlaceListDto
+import ir.divar.network.models.CityDto
+import ir.divar.network.models.PlaceListDto
+import ir.divar.network.models.request.FindPlaceRequest
 import kotlinx.coroutines.flow.Flow
 
 interface PlaceRepository {

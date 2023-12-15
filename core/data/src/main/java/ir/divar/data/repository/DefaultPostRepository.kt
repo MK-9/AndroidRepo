@@ -1,18 +1,17 @@
 package ir.divar.data.repository
 
+import ir.divar.common.Result
 import ir.divar.data.datasource.PostLocalDataSource
 import ir.divar.data.datasource.PostRemoteDataSource
-import ir.divar.database.entity.PostEntityMapper.toPostEntity
-import ir.divar.database.entity.PostEntityMapper.toPostsExternalModel
-import ir.divar.androidtask.data.model.Posts
-import ir.divar.androidtask.data.network.models.PostDetailsDto
-import ir.divar.androidtask.data.network.models.Result
+import ir.divar.data.repository.mapper.PostEntityMapper.toPostEntity
+import ir.divar.data.repository.mapper.PostEntityMapper.toPostsExternalModel
+import ir.divar.model.Posts
+import ir.divar.network.models.PostDetailsDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-class DefaultPostRepository @Inject constructor(
+class DefaultPostRepository constructor(
     private val remoteDataSource: PostRemoteDataSource,
     private val localDataSource: PostLocalDataSource
 ) : PostRepository {
