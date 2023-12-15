@@ -1,14 +1,16 @@
-package ir.divar.androidtask.data.local.entity
+package ir.divar.data.repository.mapper
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import ir.divar.androidtask.data.model.Post
-import ir.divar.androidtask.data.model.PostData
-import ir.divar.androidtask.data.model.Posts
-import ir.divar.androidtask.data.network.models.ImageItemDto
-import ir.divar.androidtask.data.network.models.PostDataDto
-import ir.divar.androidtask.data.network.models.PostDto
-import ir.divar.androidtask.data.network.models.PostsDto
+import ir.divar.database.entity.PostDataEntity
+import ir.divar.database.entity.PostEntity
+import ir.divar.model.Post
+import ir.divar.model.PostData
+import ir.divar.model.Posts
+import ir.divar.network.models.ImageItemDto
+import ir.divar.network.models.PostDataDto
+import ir.divar.network.models.PostDto
+import ir.divar.network.models.PostsDto
 
 object PostEntityMapper {
 

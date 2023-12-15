@@ -1,4 +1,4 @@
-package ir.divar.androidtask.data.local.entity
+package ir.divar.data.repository.mapper
 
 import ir.divar.androidtask.data.model.Centroid
 import ir.divar.androidtask.data.model.City
