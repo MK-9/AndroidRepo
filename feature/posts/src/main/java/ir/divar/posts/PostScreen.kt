@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.post
+package ir.divar.posts
 
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import ir.divar.androidtask.feature.generic.screen.PostScreenContent
-import ir.divar.ui.ProgressContent
 import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 
 @Composable

@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.postDetail
+package ir.divar.postdetails
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

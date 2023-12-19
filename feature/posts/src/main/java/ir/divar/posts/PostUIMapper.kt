@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.post
+package ir.divar.posts
 
 import ir.divar.androidtask.data.model.ImageItem
 import ir.divar.androidtask.data.model.Post

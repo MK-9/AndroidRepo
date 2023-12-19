@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.post
+package ir.divar.posts
 
 import android.util.Log
 import androidx.compose.runtime.getValue
@@ -10,11 +10,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.divar.androidtask.data.model.Posts
-import ir.divar.androidtask.data.network.models.Result
-import ir.divar.data.repository.PostRepository
 import ir.divar.androidtask.feature.generic.uiState.PostItemUI
 import ir.divar.androidtask.feature.generic.uiState.PostsUiState
-import ir.divar.androidtask.feature.post.PostUIMapper.toPostsItemUI
+import ir.divar.posts.PostUIMapper.toPostsItemUI
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest

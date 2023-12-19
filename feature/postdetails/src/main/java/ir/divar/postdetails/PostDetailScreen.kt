@@ -1,12 +1,10 @@
-package ir.divar.androidtask.feature.postDetail
+package ir.divar.postdetails
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import ir.divar.androidtask.feature.generic.screen.PostScreenDetailsContent
-import ir.divar.ui.ProgressContent
 
 @Composable
 fun PostDetailsScreen(

@@ -3,8 +3,8 @@ package ir.divar.data.repository
 import ir.divar.common.Result
 import ir.divar.data.datasource.PostLocalDataSource
 import ir.divar.data.datasource.PostRemoteDataSource
-import ir.divar.data.repository.mapper.PostEntityMapper.toPostEntity
-import ir.divar.data.repository.mapper.PostEntityMapper.toPostsExternalModel
+import ir.divar.data.repository.mapper.PostNetworkMapper.toPostEntity
+import ir.divar.data.repository.mapper.PostNetworkMapper.toPostsExternalModel
 import ir.divar.model.Posts
 import ir.divar.network.models.PostDetailsDto
 import kotlinx.coroutines.flow.Flow

@@ -10,8 +10,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import ir.divar.city.CityScreen
-import ir.divar.androidtask.feature.post.PostScreen
-import ir.divar.androidtask.feature.postDetail.PostDetailsScreen
+import ir.divar.posts.PostScreen
+import ir.divar.postdetails.PostDetailsScreen
 
 @Composable
 fun DefaultContent(

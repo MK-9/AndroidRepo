@@ -29,7 +29,7 @@ import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isPostRow
 import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isSubtitleRow
 import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isTitleRow
 import ir.divar.androidtask.feature.generic.uiState.PostItemUI
-import ir.divar.androidtask.feature.post.PlaceHolderState
+import ir.divar.posts.PlaceHolderState
 
 @Composable
 fun PostScreenContent(
