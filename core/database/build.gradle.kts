@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:model"))
 
     // Room
     implementation(libs.androidx.room.runtime)
@@ -47,9 +48,6 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
-
-
-
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
