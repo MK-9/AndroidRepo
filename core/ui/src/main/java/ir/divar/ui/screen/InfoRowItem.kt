@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.generic.screen
+package ir.divar.ui.screen
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import ir.divar.androidtask.feature.generic.uiState.PostDataItemUI
+import ir.divar.ui.uiState.PostDataItemUI
 
 @Composable
 fun InfoRowItem(widget: PostDataItemUI?) {

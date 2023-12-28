@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.generic.screen
+package ir.divar.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.memory.MemoryCache
 import coil.request.ImageRequest
-import ir.divar.androidtask.feature.generic.uiState.PostDataItemUI
+import ir.divar.ui.uiState.PostDataItemUI
 
 @Composable
 fun HeaderRowItem(widget: PostDataItemUI?) {

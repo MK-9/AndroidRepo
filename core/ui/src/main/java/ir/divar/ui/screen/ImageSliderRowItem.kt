@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.generic.screen
+package ir.divar.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,8 +20,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import ir.divar.androidtask.feature.generic.uiState.ImageItemUI
-import ir.divar.androidtask.feature.generic.uiState.PostItemUI
+import ir.divar.ui.uiState.ImageItemUI
+import ir.divar.ui.uiState.PostItemUI
 
 @Composable
 fun ImageSliderRowItem(widget: PostItemUI) {

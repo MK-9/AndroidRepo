@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.generic.uiState
+package ir.divar.ui.uiState
 
 object PostItemExtension {
     fun PostItemUI.isHeaderRow() = widgetType == PostItemUI.WidgetType.HEADER_ROW.name
