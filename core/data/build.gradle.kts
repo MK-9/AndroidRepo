@@ -11,10 +11,19 @@ android {
     compileSdk = 33
 
     defaultConfig {
-        minSdk = 24
+         minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 
@@ -24,6 +33,10 @@ dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:model"))
 
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
     implementation(libs.gson)
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
@@ -32,7 +45,6 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
