@@ -4,9 +4,9 @@ import ir.divar.common.Result
 import ir.divar.data.datasource.PostLocalDataSource
 import ir.divar.data.datasource.PostRemoteDataSource
 import ir.divar.data.repository.mapper.PostNetworkMapper.toPostEntity
-import ir.divar.data.repository.mapper.PostNetworkMapper.toPostsExternalModel
+import ir.divar.database.entity.PostEntityMapper.toPostsExternalModel
+import ir.divar.model.PostDetails
 import ir.divar.model.Posts
-import ir.divar.network.models.PostDetailsDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -47,13 +47,13 @@ class DefaultPostRepository @Inject constructor(
 
     override suspend fun getPostView(
         postToken: String?
-    ): Flow<Result<PostDetailsDto>> = flow {
+    ): Flow<Result<PostDetails>> = flow {
         emit(Result.InProgress(true))
 
         when (val result = remoteDataSource.getPostView(postToken)) {
             is Result.OnSuccess -> {
                 emit(Result.InProgress(false))
-                emit(Result.OnSuccess(result.data))
+//                emit(Result.OnSuccess(result.data))
             }
 
             is Result.OnError -> {

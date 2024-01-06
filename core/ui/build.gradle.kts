@@ -34,6 +34,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:model"))
+
     implementation(libs.core.ktx)
     implementation(platform(libs.compose.bom))
     implementation(libs.activity.compose)

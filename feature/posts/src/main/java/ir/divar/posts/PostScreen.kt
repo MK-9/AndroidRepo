@@ -10,8 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import ir.divar.androidtask.feature.generic.screen.PostScreenContent
-import ir.divar.androidtask.feature.generic.uiState.PostItemUI
+import ir.divar.ui.uiState.PostItemUI
 
 @Composable
 fun PostScreen(

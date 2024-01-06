@@ -9,10 +9,11 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ir.divar.androidtask.data.model.Posts
-import ir.divar.androidtask.feature.generic.uiState.PostItemUI
-import ir.divar.androidtask.feature.generic.uiState.PostsUiState
+import ir.divar.common.Result
+import ir.divar.model.Posts
 import ir.divar.posts.PostUIMapper.toPostsItemUI
+import ir.divar.ui.uiState.PostItemUI
+import ir.divar.ui.uiState.PostsUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -28,7 +29,8 @@ sealed class PlaceHolderState {
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle, private val repository: ir.divar.data.repository.PostRepository
+    savedStateHandle: SavedStateHandle,
+    private val repository: ir.divar.data.repository.PostRepository
 ) : ViewModel() {
 
     private val cityId = checkNotNull(savedStateHandle.get<Int>("cityId"))

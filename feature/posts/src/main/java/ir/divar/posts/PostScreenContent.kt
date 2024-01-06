@@ -1,4 +1,4 @@
-package ir.divar.androidtask.feature.generic.screen
+package ir.divar.posts
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,15 +21,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isDescriptionRow
-import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isHeaderRow
-import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isImageSliderRow
-import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isInfoRow
-import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isPostRow
-import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isSubtitleRow
-import ir.divar.androidtask.feature.generic.uiState.PostItemExtension.isTitleRow
-import ir.divar.androidtask.feature.generic.uiState.PostItemUI
-import ir.divar.posts.PlaceHolderState
+import ir.divar.ui.screen.DescriptionRowItem
+import ir.divar.ui.screen.HeaderRowItem
+import ir.divar.ui.screen.ImageSliderRowItem
+import ir.divar.ui.screen.InfoRowItem
+import ir.divar.ui.screen.PostRowItem
+import ir.divar.ui.screen.SubtitleRowItem
+import ir.divar.ui.screen.TitleRowItem
+import ir.divar.ui.uiState.PostItemExtension.isDescriptionRow
+import ir.divar.ui.uiState.PostItemExtension.isHeaderRow
+import ir.divar.ui.uiState.PostItemExtension.isImageSliderRow
+import ir.divar.ui.uiState.PostItemExtension.isInfoRow
+import ir.divar.ui.uiState.PostItemExtension.isPostRow
+import ir.divar.ui.uiState.PostItemExtension.isSubtitleRow
+import ir.divar.ui.uiState.PostItemExtension.isTitleRow
+import ir.divar.ui.uiState.PostItemUI
 
 @Composable
 fun PostScreenContent(
@@ -120,8 +126,7 @@ fun EndlessColumn(
                     Spacer(modifier = parentMaxWidth.requiredHeight(48.dp))
                 }
 
-                PlaceHolderState.Loading ->
-                    LoadingItem(modifier = parentMaxWidth)
+                PlaceHolderState.Loading -> LoadingItem(modifier = parentMaxWidth)
             }
         }
     }

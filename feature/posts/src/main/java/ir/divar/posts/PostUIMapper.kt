@@ -1,19 +1,5 @@
 package ir.divar.posts
 
-import ir.divar.androidtask.data.model.ImageItem
-import ir.divar.androidtask.data.model.Post
-import ir.divar.androidtask.data.model.PostData
-import ir.divar.androidtask.data.model.Posts
-import ir.divar.androidtask.data.network.models.ImageItemDto
-import ir.divar.androidtask.data.network.models.PostDataDto
-import ir.divar.androidtask.data.network.models.PostDetailsDto
-import ir.divar.androidtask.data.network.models.PostDto
-import ir.divar.androidtask.data.network.models.PostsDto
-import ir.divar.androidtask.feature.generic.uiState.ImageItemUI
-import ir.divar.androidtask.feature.generic.uiState.PostDataItemUI
-import ir.divar.androidtask.feature.generic.uiState.PostDetailsDataUI
-import ir.divar.androidtask.feature.generic.uiState.PostItemUI
-import ir.divar.androidtask.feature.generic.uiState.PostsDataUI
 
 object PostUIMapper {
 

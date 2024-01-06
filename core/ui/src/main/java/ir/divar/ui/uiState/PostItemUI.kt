@@ -1,6 +1,7 @@
 package ir.divar.ui.uiState
 
 import androidx.compose.runtime.Immutable
+import ir.divar.model.PostData
 
 @Immutable
 data class PostItemUI(
@@ -9,7 +10,8 @@ data class PostItemUI(
     val page: String?,
     val lastPostDate: Long?,
     val widgetType: String?,
-    val data: PostDataItemUI?,
+    val data: PostData?,
+//    val data: PostDataItemUI?,
     val onItemClicked: (() -> Unit)?
 ) {
     enum class WidgetType(value: String) {

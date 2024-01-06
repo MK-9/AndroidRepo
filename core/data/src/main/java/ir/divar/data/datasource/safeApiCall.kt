@@ -1,11 +1,11 @@
 package ir.divar.data.datasource
 
-import ir.divar.androidtask.data.network.models.Result
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
+import ir.divar.common.Result
 
-internal suspend fun <T : Any> safeApiCall(input: suspend () -> Response<T>): Result<T> {
+ internal suspend fun <T : Any> safeApiCall(input: suspend () -> Response<T>): Result<T> {
     try {
         val response = input.invoke()
 
