@@ -14,8 +14,8 @@ import androidx.room.PrimaryKey
     )]
 )
 data class PostDetailsWidget(
-    @PrimaryKey val id: Long,
-    val widgetType: String,
-    @Embedded val data: Data,
-    val postDetailsId: Int
+    @PrimaryKey val id: Long = 0,
+    val widgetType: String?,
+    @Embedded val data: Data?,
+    val postDetailsId: Int = 0
 )

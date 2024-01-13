@@ -16,6 +16,6 @@ data class Post(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val cityId: Int,
     val page: String,
-    val widgetList: List<PostWidget>,
-    val lastPostDate: String
+    val widgetList: List<PostWidget>?,
+    val lastPostDate: Long?
 )
