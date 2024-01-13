@@ -5,22 +5,17 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "posts", foreignKeys = [ForeignKey(
+    tableName = "post", foreignKeys = [ForeignKey(
         entity = City::class,
         parentColumns = ["id"],
         childColumns = ["cityId"],
         onDelete = ForeignKey.NO_ACTION
-    ), ForeignKey(
-        entity = Widget::class,
-        parentColumns = ["id"],
-        childColumns = ["widgetId"],
-        onDelete = ForeignKey.CASCADE
     )]
 )
-internal data class Post(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+data class Post(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val cityId: Int,
-    val widgetId: String,
     val page: String,
+    val widgetList: List<PostWidget>,
     val lastPostDate: String
 )
