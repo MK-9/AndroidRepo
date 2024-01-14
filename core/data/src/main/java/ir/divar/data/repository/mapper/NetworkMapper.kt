@@ -19,12 +19,15 @@ import ir.divar.network.models.PostsDto
 object NetworkMapper {
 
     fun PostsDto.toPosts(cityId: Int, page: String) = Post(
-        page = page, cityId = cityId, widgetList = widgets?.map {
+        page = page, cityId = cityId, widgetList = widgetList?.map {
             it.toPostWidget()
         }, lastPostDate = lastPostDate
     )
 
-    private fun PostDto.toPostWidget() = PostWidget(widgetType = widgetType, data = data?.toData())
+    fun PostDetailsDto.toPostDetails() = PostDetails(widgets = widgets?.map {
+        it.toPostDetailsWidget()
+    }, enableContact = enableContact, contactButtonText = contactButtonText)
+
 
     private fun PostDataDto.toData() = Data(
         token = token,
@@ -40,17 +43,15 @@ object NetworkMapper {
         thumbnail = thumbnail
     )
 
-    fun PostDetailsDto.toPostDetails() = PostDetails(widgets = widgets?.map {
-        it.toPostDetailsWidget()
-    }, enableContact = enableContact, contactButtonText = contactButtonText)
+    private fun PostDto.toPostWidget() = PostWidget(widgetType = widgetType, data = data?.toData())
 
-    private fun PostDto.toPostDetailsWidget() = PostDetailsWidget(
-        widgetType = widgetType, data = data?.toData()
-    )
+    private fun PostDto.toPostDetailsWidget() =
+        PostDetailsWidget(widgetType = widgetType, data = data?.toData())
+
 
     //old style
     fun PostsDto.toPostEntity(cityId: Int = 0, page: String? = ""): List<PostEntity>? {
-        return widgets?.map {
+        return widgetList?.map {
             PostEntity(
                 cityId = cityId,
                 page = page,

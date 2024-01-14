@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
         entity = City::class,
         parentColumns = ["id"],
         childColumns = ["cityId"],
-        onDelete = ForeignKey.NO_ACTION
+        onDelete = ForeignKey.CASCADE
     )]
 )
 data class Post(

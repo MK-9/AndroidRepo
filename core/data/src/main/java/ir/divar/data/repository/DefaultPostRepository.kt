@@ -3,7 +3,7 @@ package ir.divar.data.repository
 import ir.divar.common.Result
 import ir.divar.data.datasource.PostLocalDataSource
 import ir.divar.data.datasource.PostRemoteDataSource
-import ir.divar.data.repository.mapper.PostNetworkMapper.toPostEntity
+import ir.divar.data.repository.mapper.NetworkMapper.toPostEntity
 import ir.divar.database.entity.PostEntityMapper.toPostsExternalModel
 import ir.divar.model.PostDetails
 import ir.divar.model.Posts
