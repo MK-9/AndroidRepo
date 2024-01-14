@@ -5,10 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "cities")
-internal data class City(
+internal data class CityEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val name: String,
     val slug: String,
     val radius: Int,
-    @Embedded val centroid: Centroid
+    @Embedded val centroid: CentroidEntity
 )

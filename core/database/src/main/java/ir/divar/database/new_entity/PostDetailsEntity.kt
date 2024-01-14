@@ -4,9 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "postDetails")
-data class PostDetails(
+data class PostDetailsEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    val widgets: List<PostDetailsWidget>?,
+    val widgets: List<PostDetailsWidgetEntity>?,
     val enableContact: Boolean,
     val contactButtonText: String?
 )
