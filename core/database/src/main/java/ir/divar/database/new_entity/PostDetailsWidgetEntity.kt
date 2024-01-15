@@ -17,5 +17,5 @@ data class PostDetailsWidgetEntity(
     @PrimaryKey val id: Long = 0,
     val widgetType: String?,
     @Embedded val data: Data?,
-    val postDetailsId: Int = 0
+    val postDetailsId: Long = 0
 )

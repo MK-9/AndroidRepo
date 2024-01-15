@@ -1,9 +1,6 @@
 package ir.divar.database.new_entity
 
-import androidx.room.PrimaryKey
-
 data class Data(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val token: String?,
     val title: String?,
     val subtitle: String?,
