@@ -57,11 +57,11 @@ class CityViewModel @Inject constructor(
                     }
 
                     is Result.OnSuccess -> {
-                        val items = result.data.cities?.map {
+                        val items = result.data.map {
                             CityItem(it.id, it.name, null)
                         }
 
-                        items?.run {
+                        items.run {
                             _cityScreenUiState.update { currentState ->
                                 currentState.copy(isLoading = false, data = this)
                             }

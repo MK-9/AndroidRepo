@@ -1,12 +1,14 @@
 package ir.divar.data.repository.mapper
 
-import com.google.gson.Gson
-import ir.divar.database.entity.PostDataEntity
+import ir.divar.database.new_entity.CentroidEntity
+import ir.divar.database.new_entity.CityEntity
 import ir.divar.database.new_entity.Data
 import ir.divar.database.new_entity.PostDetailsEntity
 import ir.divar.database.new_entity.PostDetailsWidgetEntity
 import ir.divar.database.new_entity.PostEntity
 import ir.divar.database.new_entity.PostWidgetEntity
+import ir.divar.network.models.CentroidDto
+import ir.divar.network.models.CityDto
 import ir.divar.network.models.PostDataDto
 import ir.divar.network.models.PostDetailsDto
 import ir.divar.network.models.PostDto
@@ -16,6 +18,14 @@ import ir.divar.network.models.PostsDto
  *  Network ---> Entity
  */
 object NetworkMapper {
+
+    fun CityDto.toCityEntity() = CityEntity(
+        name = name, id = id, slug = slug, radius = radius, centroid = centroid?.toCentroidEntity()
+    )
+
+    private fun CentroidDto.toCentroidEntity() = CentroidEntity(
+        latitude = latitude, longitude = longitude
+    )
 
     fun PostsDto.toPosts(cityId: Int, page: String) = PostEntity(
         page = page, cityId = cityId, widgetList = widgetList?.map {

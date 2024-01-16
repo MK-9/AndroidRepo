@@ -1,6 +1,6 @@
 package ir.divar.data.datasource
 
-import ir.divar.database.entity.CityEntity
+import ir.divar.database.new_entity.CityEntity
 import kotlinx.coroutines.flow.Flow
 
 interface PlaceLocalDataSource {

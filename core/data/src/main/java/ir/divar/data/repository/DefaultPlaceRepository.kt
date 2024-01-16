@@ -4,9 +4,9 @@ import ir.divar.common.Result
 import ir.divar.data.datasource.PlaceLocalDataSource
 import ir.divar.data.datasource.PlaceRemoteDataSource
 import ir.divar.data.repository.mapper.CityNetworkMapper.toCityEntity
-import ir.divar.database.entity.CityEntityMapper.toCityExternalModel
-import ir.divar.model.City
-import ir.divar.model.PlaceList
+import ir.divar.database.new_entity.ExternalModelMapper.toCityExternalModel
+import ir.divar.model.newmodel.CityModel
+import ir.divar.network.models.CityDto
 import ir.divar.network.models.request.FindPlaceRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,17 +18,17 @@ class DefaultPlaceRepository @Inject constructor(
     private val localDataSource: PlaceLocalDataSource
 ) : PlaceRepository {
 
-    override suspend fun getPlaceList(): Flow<Result<PlaceList>> {
+    override suspend fun getPlaceList(): Flow<Result<List<CityModel>>> {
         return localDataSource.getCityList().map { cities ->
-            val placeListDto = PlaceList(cities.map { it.toCityExternalModel() })
-            Result.OnSuccess(placeListDto)
+            Result.OnSuccess(cities.map { it.toCityExternalModel() })
         }
     }
 
     override suspend fun syncPlaceList() {
         when (val result = remoteDataSource.getPlaceList()) {
             is Result.OnSuccess -> {
-                result.data.cities?.map { it.toCityEntity() }?.run {
+                val cities: List<CityDto>? = result.data.cities
+                cities?.map { it.toCityEntity() }?.run {
                     localDataSource.updateCities(this)
                 }
             }
@@ -42,9 +42,7 @@ class DefaultPlaceRepository @Inject constructor(
     }
 
 
-    override suspend fun findPlace(
-        body: FindPlaceRequest
-    ): Flow<Result<City>> = flow {
+    override suspend fun findPlace(body: FindPlaceRequest): Flow<Result<CityModel>> = flow {
         when (val result = remoteDataSource.findPlace(body)) {
             is Result.OnSuccess -> {
                 emit(Result.InProgress(false))
