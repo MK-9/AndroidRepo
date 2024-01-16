@@ -1,7 +1,7 @@
 package ir.divar.database.new_entity
 
-import ir.divar.model.Centroid
-import ir.divar.model.City
+import ir.divar.model.newmodel.CentroidModel
+import ir.divar.model.newmodel.CityModel
 import ir.divar.model.newmodel.DataModel
 import ir.divar.model.newmodel.PostDetailsModel
 import ir.divar.model.newmodel.PostDetailsWidgetModel
@@ -13,13 +13,13 @@ object ExternalModelMapper {
     /**
      * Post Mapper
      */
-    fun PostEntity.toPostModel() = PostModel(
+    fun PostEntity.toPostExternalModel() = PostModel(
         id = id, cityId = cityId, page = page, widgetList = widgetList?.map {
-            it.toPostWidgetModel()
+            it.toPostWidgetExternalModel()
         }, lastPostDate = lastPostDate
     )
 
-    fun PostWidgetEntity.toPostWidgetModel() = PostWidgetModel(
+    fun PostWidgetEntity.toPostWidgetExternalModel() = PostWidgetModel(
         id = id, widgetType = widgetType, data = data?.toDataModel(), postId = postId
     )
 
@@ -41,15 +41,14 @@ object ExternalModelMapper {
     /**
      * Post Details Mapper
      */
-
-    fun PostDetailsEntity.toPostDetailsModel() = PostDetailsModel(
+    fun PostDetailsEntity.toPostDetailsExternalModel() = PostDetailsModel(
         id = id,
-        widgets = widgets?.map { it.toPostWidgetDetailsModel() },
+        widgets = widgets?.map { it.toPostDetailsWidgetModel() },
         enableContact = enableContact,
         contactButtonText = contactButtonText
     )
 
-    private fun PostDetailsWidgetEntity.toPostWidgetDetailsModel() = PostDetailsWidgetModel(
+    private fun PostDetailsWidgetEntity.toPostDetailsWidgetModel() = PostDetailsWidgetModel(
         id = id, widgetType = widgetType, data = data?.toDataModel(), postDetailsId = postDetailsId
     )
 
@@ -57,15 +56,15 @@ object ExternalModelMapper {
     /**
      * City Mapper
      */
-    fun CityEntity.toCityExternalModel() = City(
+    fun CityEntity.toCityExternalModel() = CityModel(
         name = name,
         id = id,
         slug = slug,
         radius = radius,
-        centroid = centroid.toCentroidExternalModel()
+        centroid = centroid?.toCentroidExternalModel()
     )
 
-    private fun CentroidEntity.toCentroidExternalModel() = Centroid(
+    private fun CentroidEntity.toCentroidExternalModel() = CentroidModel(
         latitude = latitude, longitude = longitude
     )
 }
